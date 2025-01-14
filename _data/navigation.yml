@@ -1,8 +1,12 @@
 - name: Home
   link: /
-- name: About
+- name: About me
   link: /about.html
+- name: Projects/ tools developemt
+  link: /projects.html
+- name: Data visualization
+  link: /data_viz.html
 - name: Blog
   link: /blog.html
-- name: Staff
-  link: /staff.html
+- name: Personal space
+  link: /random.html
