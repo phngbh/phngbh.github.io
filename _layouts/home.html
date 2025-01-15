@@ -38,40 +38,6 @@
         font-size: 20px;
         text-transform: uppercase; /* Capitalize text */
       }
-      .menu-button {
-        display: none;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        font-size: 20px;
-        cursor: pointer;
-        z-index: 3;
-      }
-      .menu {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        position: absolute;
-        top: 50px;
-        right: 10px;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-        border-radius: 10px;
-        z-index: 3;
-      }
-      .menu a {
-        color: white;
-        text-decoration: none;
-        margin: 5px 0;
-        padding: 10px;
-        background: none;
-        font-size: 20px;
-        text-transform: uppercase; /* Capitalize text */
-      }
       .content {
         background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
         padding: 20px;
@@ -92,17 +58,55 @@
         color: #F7CE46; /* Change hyperlink color */
       }
       .background {
-        background-image: url('assets/images/home_full_img.jpg');
         background-size: cover;
         background-position: right; /* Fit the background image from the right */
-        height: 100%;
+        height: 100vh;
         width: 100%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: -1;
+        position: relative;
+      }
+      .background-1 {
+        background-image: url('assets/images/home_full_img.jpg');
+      }
+      .background-2 {
+        background-image: url('assets/images/home_full_img.jpg');
+        opacity: 0.8; /* Reduce opacity for the second background */
+      }
+      .menu-button {
+        display: none;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 3;
+      }
+      .menu {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        top: 50px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 10px;
+        z-index: 3;
+      }
+      .menu a {
+        color: white;
+        text-decoration: none;
+        margin: 5px 0;
+        padding: 10px;
+        background: none;
+        font-size: 20px;
+        text-transform: uppercase; /* Capitalize text */
       }
       .scroll-down {
+        display: none; /* Hide by default */
         position: absolute;
         bottom: 20px;
         left: 50%;
@@ -110,22 +114,56 @@
         font-size: 20px;
         color: white;
         z-index: 2;
+        animation: twinkle 1s infinite;
       }
-      @media (max-width: 600px) {
+      @keyframes twinkle {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      @media (max-aspect-ratio: 1/1) {
         .tabs {
           display: none;
         }
         .menu-button {
           display: block;
         }
+        .background {
+          height: 100vh; /* Each background fits the height of the screen */
+        }
+        .background-1, .background-2 {
+          position: absolute;
+          width: 100%;
+          height: 100vh;
+        }
+        .background-2 {
+          top: 100vh; /* Position the second background below the first */
+        }
         .content {
-          top: 30%;
-          transform: translateY(-50%);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           width: 90%; /* Adjust width for smaller screens */
           max-width: 90%;
+          display: block;
         }
         .scroll-down {
-          display: block;
+          display: block; /* Show only on phone screens */
+        }
+        .content-second {
+          background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+          padding: 20px;
+          border-radius: 10px;
+          width: 90%; /* Adjust width as needed */
+          max-width: 90%;
+          text-align: left; /* Align text to the left */
+          color: white;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+          font-size: 16px; /* Change the font size here */
+          font-family: Century Gothic; /* Change the font family */
         }
       }
     </style>
@@ -146,17 +184,17 @@
       <a href="./blog.html">Blog</a>
       <a href="./random.html">Personal space</a>
     </div>
-    <div class="background"></div>
-    <div class="content">
-      <h1>{{ "Hello World!" | downcase }}</h1>
-      <p>Hi guys, welcome to my personal page.</p>
-      <div class="scroll-down">Scroll down to see more</div>
+    <div class="background background-1">
+      <div class="content">
+        <h1>{{ "Hello World!" | downcase }}</h1>
+        <p>Hi guys, welcome to my personal page.</p>
+        <div class="scroll-down">↓ ↓ ↓</div>
+      </div>
     </div>
-    <div class="content" style="top: 80%; opacity: 0.8;">
-      <p>My name is Phong BH. Nguyen (don't even try to pronounce it :D), a scientist, programmer and adventurer, with an interest in all kinds of creative and artistic works. This website serves as a single starting point for everyone to get to know me, almost everything that makes up who I am, professionally and personally.</p>
-      <p>I am a bioinformatician/ data scientist with a particular interest in health and medical informatics for non-communicable diseases such as diabetes, cancer and cardiovascular diseases. My research mainly focuses on developing machine learning framework to better understand diseases, discover biomarkers for diagnosis and prognosis and assist clinical decision making. The ultimate goal is to make medicine more translational and benefit patients. You can get to know more about my background and experience in <a href="./about.html">About me</a>, <a href="./projects.html">Projects</a> and <a href="./data_viz.html">Data visualization</a>.</p>
-      <p>My daily work circles around understanding and utilizing data. I leverage different programming languages to write everything from data processing and engineering code to larger framework to streamline workflows for both research and clinical practice. In addition, I have a massive interest in data visualization, ways to make sense of data, discover new insights and showcase research findings. Get to know more about my work in <a href="./projects.html">Projects</a> and <a href="./data_viz.html">Data visualization</a>.</p>
-      <p>Besides work, I try to be more active in life. At first it was pure peer pressure (I live in Bavaria, Germany), but now I really enjoy doing sports like hiking, skiing, cycling, swimming, weightlifting and of course badminton (tell you I'm Asian without telling you I'm Asian :D). I also have a creative sides, when I don't go out I like to write poems, paint big ass paintings, cook some risky recipes or just simply read and listen to music. Check out my <a href="./random.html">Personal space</a> and <a href="./blog.html">Blog</a> for some of these stuffs.</p>
+    <div class="background background-2">
+      <div class="content-second">
+        {{ content }}
+      </div>
     </div>
     <script>
       function toggleMenu() {
@@ -167,6 +205,17 @@
           menu.style.display = 'block';
         }
       }
+
+      function checkScreenSize() {
+        if (window.innerWidth <= window.innerHeight) {
+          document.querySelector('.background-2').style.display = 'block';
+        } else {
+          document.querySelector('.background-2').style.display = 'none';
+        }
+      }
+
+      window.addEventListener('resize', checkScreenSize);
+      window.addEventListener('load', checkScreenSize);
     </script>
   </body>
 </html>
