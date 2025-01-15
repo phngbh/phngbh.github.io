@@ -25,89 +25,99 @@
         margin: 0;
         padding: 0;
         display: flex;
+        flex-direction: column;
         height: 100vh;
         color: white;
-      }
-      .left-space {
-        background: linear-gradient(to bottom, #A4B6CD, #D3D07C);
-        padding: 20px;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         position: relative;
-        z-index: 1;
       }
       .tabs {
         display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
+        justify-content: flex-start;
+        align-items: center;
         width: 100%;
+        padding: 10px;
+        background: none;
         position: absolute;
         top: 0;
         left: 0;
-        padding: 10px;
-        background: rgba(30, 41, 69, 0.5);
+        z-index: 2;
       }
       .tabs a {
-        color: white;
+        color: black;
         text-decoration: none;
         margin: 0 10px;
         padding: 10px;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 5px;
+        background: none;
+        font-size: 20px;
+        text-transform: uppercase; /* Capitalize text */
       }
       .content {
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
         padding: 20px;
         border-radius: 10px;
-        margin-top: 60px; /* Adjust this value to position the content in the middle */
+        width: 60%; /* Adjust width as needed */
+        max-width: 70%;
+        text-align: left; /* Align text to the left */
+        color: white;
+        position: absolute;
+        top: 60%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        font-size: 16px; /* Change the font size here */
+        font-family: Century Gothic; /* Change the font family */
+      }
+      .content a {
+        color: #F7CE46; /* Change hyperlink color */
       }
       .background {
-        background-image: url('assets/images/home_img.jpg');
+        background-image: url('assets/images/home_full_img.jpg');
         background-size: cover;
-        background-position: center;
+        background-position: right; /* Fit the background image from the right */
         height: 100%;
-        width: 50%;
-        position: relative;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
         z-index: -1;
       }
       @media (max-width: 600px) {
-        body {
-          flex-direction: column;
-        }
-        .left-space {
-          width: 100%;
-          height: 50%;
-        }
-        .background {
-          width: 100%;
-          height: 50%;
-        }
         .tabs {
           flex-direction: column;
+          align-items: flex-start;
         }
         .tabs a {
           margin: 5px 0;
+        }
+        .content {
+          top: 60%;
+          transform: translateY(-50%);
         }
       }
     </style>
   </head>
   <body>
-    <div class="left-space">
-      <div class="tabs">
-        <a href="./about.html">About me</a>
-        <a href="./projects.html">Projects/ Tools development</a>
-        <a href="./data_viz.html">Data visualization</a>
-        <a href="./blog.html">Blog</a>
-        <a href="./random.html">Personal space</a>
-      </div>
-      <div class="content">
-        <h1>hello world!</h1>
-<p>Welcome to my homepage!</p>
-      </div>
+    <div class="tabs">
+      <a href="./about.html">About me</a>
+      <a href="./projects.html">Projects/ Tools development</a>
+      <a href="./data_viz.html">Data visualization</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./random.html">Personal space</a>
     </div>
     <div class="background"></div>
+    <div class="content">
+      <h3 id="hi-guys-welcome-to-my-personal-page">Hi guys, welcome to my personal page.</h3>
+
+<p>My name is Phong BH. Nguyen (don’t even try to pronounce it :D), a scientist, programmer and adventurer, with an interest in all kinds of creative and artistic works. This website serves as a single starting point for everyone to get to know me, almost everything that makes up who I am, professionally and personally.</p>
+
+<p>I am a bioinformatician/ data scientist with a particular interest in health and medical informatics for non-communicable diseases such as diabetes, cancer and cardiovascular diseases. My research mainly focuses on developing machine learning framework to better understand diseases, discover biomarkers for diagnosis and prognosis and assist clinical decision making. The ultimate goal is to make medicine more translational and benefit patients. You can get to know more about my backdround and experience in <a href="./about.html">About me</a>, <a href="./projects.html">Projects</a> and <a href="./data_viz.html">Data visualization</a>.</p>
+
+<p>My daily work circles around understanding and utilizing data. I leverage different programming languages to write everything from data processing and engineering code to larger framework to streamline workflows for both research and clinical practice. In addition, I have a massive interest in data visualization, ways to make sense of data, discover new insights and showcase research findings. Get to know more about my work in <a href="./projects.html">Projects</a> and <a href="./data_viz.html">Data visualization</a>.</p>
+
+<p>Besides work, I try to be more active in life. At first it was pure peer pressure (I live in Bavaria, Germany), but now I really enjoy doing sports like hiking, skiing, cycling, swimming, weightlifting and of course badminton (tell you I’m Asian without telling you I’m Asian :D). I also have a creative sides, when I don’t go out I like to write poems, paint big ass paintings, cook some risky recipes or just simply read and listen to music. Check out my <a href="./random.html">Personal space</a> and <a href="./blog.html">Blog</a> for some of these stuffs.</p>
+
+<p>If you want to get in touch, drop me a message here.</p>
+
+    </div>
   </body>
 </html>
