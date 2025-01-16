@@ -56,6 +56,12 @@
         border-radius: 10px;
         font-size: 20px;
       }
+      .menu-button {
+        display: none; /* Hide by default */
+      }
+      .toc-button {
+        display: none; /* Hide by default */
+      }
       .container {
         display: flex;
         flex: 1;
@@ -105,22 +111,53 @@
           font-size: 15px; /* Adjust font size for smaller screens */
         }
         .tabs {
-          padding: 4px;
+          justify-content: space-between;
+          padding: 0px;
           font-size: 8px; /* Adjust font size for smaller screens */
         }
         .tabs a {
-          margin: 1px 1px;
-          padding: 2px;
-          font-size: 8px; /* Adjust font size for smaller screens */
+          display: none; /* Hide tabs on phone screens */
         }
         .tabs a.current {
-          font-size: 8px;
+          font-size: 12px;
+        }
+        .menu-button {
+          display: block; /* Show menu button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 10px;
+          font-size: 15px;
+          cursor: pointer;
+          position: fixed;
+          border-radius: 5px;
+          top: 10px;
+          right: 20px;
+        }
+        .menu-content {
+          display: none;
+          position: absolute;
+          top: 60px;
+          right: 20px;
+          background: rgba(43, 43, 43, 1);
+          padding: 10px;
+          border-radius: 5px;
+          z-index: 1001;
+        }
+        .menu-content a {
+          display: block;
+          color: #F7CE46;
+          text-decoration: none;
+          margin: 5px 0;
+          padding: 5px;
+          font-size: 12px;
         }
         .left-bar {
           width: 70px; /* Adjust width for smaller screens */
           padding: 4px;
           font-size: 8px; /* Adjust font size for smaller screens */
-          top: 17px;
+          top: 7px;
+          border-radius: 3px;
         }
         .left-bar img {
           width: 50px; /* Smaller image for smaller screens */
@@ -136,10 +173,37 @@
           padding: 2px;
           margin-top: 2px;
         }
+        .toc-button {
+          display: block; /* Show table of content button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 7px;
+          font-size: 10px;
+          cursor: pointer;
+          border-radius: 3px;
+          margin-top: 3px;
+        }
+        .toc-content {
+          display: none;
+          background: rgba(51, 51, 51, 0.9);
+          color: #F7CE46;
+          padding: 10px;
+          border-radius: 5px;
+          margin-left: 2px;
+          width: 80%;
+        }
+        .toc-content a {
+          display: block;
+          text-decoration: none;
+          margin: 5px 0;
+          padding: 5px;
+          font-size: 15px;
+        }
         .content {
           padding: 15px;
-          font-size: 6px; /* Adjust font size for smaller screens */
-          margin-top: 8px;
+          font-size: 10px; /* Adjust font size for smaller screens */
+          margin-top: 0px;
           margin-left: 75px;
         }
       }
@@ -147,7 +211,9 @@
   </head>
   <body>
     <div class="tabs">
-      <nav>
+      <button class="menu-button" onclick="toggleMenu()">Menu</button>
+      <div class="menu-content" id="menu-content">
+        <nav>
   
     <a href="/">Home</a>
   
@@ -162,17 +228,20 @@
     <a href="/random.html" class="current">Personal space</a>
   
 </nav>
-      <!-- Add more tabs as needed -->
+      </div>
     </div>
     <div class="container">
       <div class="left-bar">
         <img src="assets/images/page_img.jpg" alt="Profile Picture">
-        <ul>
-          <li><a href="#section1">Section 1</a></li>
-          <li><a href="#section2">Section 2</a></li>
-          <li><a href="#section3">Section 3</a></li>
-          <!-- Add more menu items as needed -->
-        </ul>
+        <button class="toc-button" onclick="toggleToc()">Table of Content</button>
+        <div class="toc-content" id="toc-content">
+          <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="#section2">Section 2</a></li>
+            <li><a href="#section3">Section 3</a></li>
+            <!-- Add more menu items as needed -->
+          </ul>
+        </div>
       </div>
       <div class="content">
         <h1 id="about-page">About page</h1>
@@ -181,5 +250,24 @@
 
       </div>
     </div>
+    <script>
+      function toggleMenu() {
+        var menuContent = document.getElementById('menu-content');
+        if (menuContent.style.display === 'block') {
+          menuContent.style.display = 'none';
+        } else {
+          menuContent.style.display = 'block';
+        }
+      }
+
+      function toggleToc() {
+        var tocContent = document.getElementById('toc-content');
+        if (tocContent.style.display === 'block') {
+          tocContent.style.display = 'none';
+        } else {
+          tocContent.style.display = 'block';
+        }
+      }
+    </script>
   </body>
 </html>
