@@ -127,10 +127,10 @@
       .scroll-down {
         display: none; /* Hide by default */
         position: absolute;
+        font-size: 40px;
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 20px;
         color: white;
         z-index: 2;
         animation: twinkle 1s infinite;
@@ -164,6 +164,11 @@
           transform: translate(-50%, -50%);
           width: 90%; /* Adjust width for smaller screens */
           max-width: 90%;
+          text-shadow: 
+            -1px -1px 0 #fff,  
+            1px -1px 0 #fff,
+            -1px 1px 0 #fff,
+            1px 1px 0 #fff; /* White outline */
         }
         .scroll-down {
           display: block; /* Show only on phone screens */
