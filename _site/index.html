@@ -101,7 +101,7 @@
       .background-2 {
         background-image: url('assets/images/home_full_img.jpg');
         background-repeat: repeat-y;
-        opacity: 1; /* Reduce opacity for the second background */
+        opacity: 0.3; /* Reduce opacity for the second background */
       }
       .menu-button {
         display: none; /* Hide by default */
@@ -169,7 +169,7 @@
         }
         .background-2 {
           top: 100vh; /* Position the second background below the first */
-          opacity: 0.5;
+          opacity: 1;
         }
         .content {
           top: 60%;
@@ -182,13 +182,13 @@
           display: block; /* Show only on phone screens */
         }
         .content-second {
-          background: none; /* Semi-transparent background */
+          background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
           padding: 20px;
           border-radius: 10px;
           width: 90%; /* Adjust width as needed */
           max-width: 90%;
           text-align: left; /* Align text to the left */
-          color: black;
+          color: white;
           position: relative;
           top: 50%;
           left: 50%;
@@ -198,8 +198,8 @@
           font-family: Century Gothic; /* Change the font family */
         }
         .content-second a {
-        color: #466cf7; /* Change hyperlink color */
-      }
+        color: #F7CE46; /* Change hyperlink color */
+        }
       }
     </style>
   </head>
@@ -223,7 +223,9 @@
       <div class="content">
         <h1>Phong BH. Nguyen</h1>
         <h2>Scientist, programmer, adventurer</h2>
-        <div class="scroll-down">Please scroll down</div>
+        <br>
+        <br>
+        <div class="scroll-down">↓ ↓ ↓</div>
       </div>
     </div>
     <div class="background background-2">
