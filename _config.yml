@@ -1,14 +1,22 @@
 collections:
-  authors:
+  projects:
     output: true
-    permalink: /authors/:path/
+    permalink: /projects/:path/
+  data_viz:
+    output: true
+    permalink: /data_viz/:path/
 
 defaults:
   - scope:
       path: ""
-      type: "authors"
+      type: "projects"
     values:
-      layout: "author"
+      layout: "project"
+  - scope:
+      path: ""
+      type: "data_viz"
+    values:
+      layout: "project"
   - scope:
       path: ""
       type: "posts"

@@ -1,0 +1,399 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation of the impact of ancestry to drug response in cancer cell lines</title>
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Evaluation of the impact of ancestry to drug response in cancer cell lines</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Evaluation of the impact of ancestry to drug response in cancer cell lines" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cancer research has long relied on the use of in vitro cell lines as pivotal models to understand the mechanisms of the disease and evaluate potential treatments. These cell lines allow researchers to simulate biological processes in a controlled environment, enabling reproducibility and scalability. However, a major limitation of many studies is the lack of comprehensive demographic and genetic characterization of the cell lines used. Specifically, the underrepresentation or incomplete identification of ancestry information poses challenges to the generalizability and precision of research outcomes. Understanding the ancestry of cell lines is critical as it provides context for genetic variations, disease susceptibility, and drug response patterns among diverse populations. Addressing this gap is essential for achieving equitable and effective cancer therapies." />
+<meta property="og:description" content="Cancer research has long relied on the use of in vitro cell lines as pivotal models to understand the mechanisms of the disease and evaluate potential treatments. These cell lines allow researchers to simulate biological processes in a controlled environment, enabling reproducibility and scalability. However, a major limitation of many studies is the lack of comprehensive demographic and genetic characterization of the cell lines used. Specifically, the underrepresentation or incomplete identification of ancestry information poses challenges to the generalizability and precision of research outcomes. Understanding the ancestry of cell lines is critical as it provides context for genetic variations, disease susceptibility, and drug response patterns among diverse populations. Addressing this gap is essential for achieving equitable and effective cancer therapies." />
+<link rel="canonical" href="http://localhost:4001/projects/5.ancestry/" />
+<meta property="og:url" content="http://localhost:4001/projects/5.ancestry/" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-30T00:47:53+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Evaluation of the impact of ancestry to drug response in cancer cell lines" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T00:47:53+01:00","datePublished":"2025-01-30T00:47:53+01:00","description":"Cancer research has long relied on the use of in vitro cell lines as pivotal models to understand the mechanisms of the disease and evaluate potential treatments. These cell lines allow researchers to simulate biological processes in a controlled environment, enabling reproducibility and scalability. However, a major limitation of many studies is the lack of comprehensive demographic and genetic characterization of the cell lines used. Specifically, the underrepresentation or incomplete identification of ancestry information poses challenges to the generalizability and precision of research outcomes. Understanding the ancestry of cell lines is critical as it provides context for genetic variations, disease susceptibility, and drug response patterns among diverse populations. Addressing this gap is essential for achieving equitable and effective cancer therapies.","headline":"Evaluation of the impact of ancestry to drug response in cancer cell lines","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/projects/5.ancestry/"},"url":"http://localhost:4001/projects/5.ancestry/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background: rgba(64,64,64,0.8);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        color: white;
+        font-size: 2vw;
+      }
+      .tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0.8vw;
+        background: rgba(43, 43, 43, 1); /* Coffee color with reduced opacity */
+        font-size: 3vw;
+        position: fixed;
+      }
+      .tabs a {
+        color: #F7CE46;
+        text-decoration: none;
+        margin: 0 10px;
+        padding: 10px;
+        background: none;
+        border-radius: 1vw;
+        font-size: 1.3vw;
+      }
+      .tabs a.current {
+        background: #F7CE46; /* Different color for the current page */
+        color: rgba(43, 43, 43, 1);
+        border-radius: 1vw;
+        font-size: 1.5vw;
+      }
+      .menu-button {
+        display: none; /* Hide by default */
+      }
+      .toc-button {
+        display: none; /* Hide by default */
+      }
+      .container {
+        display: flex;
+        flex: 1;
+      }
+      .left-bar {
+        background: rgba(51, 51, 51, 0.9); /* Coffee color with reduced opacity */
+        width: 16vw;
+        padding: 0.5vw;
+        position: fixed;
+        top: 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2.5vw;
+      }
+      .left-bar img {
+        border-radius: 50%;
+        width: 10vw;
+        height: 10vw;
+        object-fit: cover;
+        margin-bottom: 0.5vw;
+        margin-left: 0.8vw;
+      }
+      .left-bar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .left-bar ul li {
+        margin: 0.3vw 0.3vw;
+      }
+      .left-bar ul li a {
+        color: rgb(221,221,221);
+        text-decoration: none;
+        font-size: 1.2vw;
+      }
+      .content {
+        flex: 1;
+        padding: 40px;
+        background: rgba(64,64,64,0.8); /* Different color for the content area */
+        color: rgb(221,221,221);
+        font-size: 1vw;
+        margin-left: 230px;
+        margin-top: 40px;
+      }
+      .content a {
+        color: #F7CE46; /* Change hyperlink color */
+      }
+      .bash-command {
+          font-family: monospace;
+          background: #272727;
+          color: rgb(221,221,221);
+          padding: 0px;
+          margin: 0px;
+          border-radius: 5px;
+          overflow-x: auto;
+          white-space: pre;
+          font-size: 1vw;
+          display: block;
+          width: 1100px;
+      }
+      pre[class*="language-"] {
+        background: #272727;
+        padding: 0px;
+        margin: 0px;
+        border-radius: 5px;
+        overflow-x: auto;
+        display: block;
+        width: 1100px;
+      }
+      /* Custom styles for headers */
+      h1, h2, h3, h4, h5, h6 {
+        color: #F7CE46; /* Change header color */
+        background-color: rgba(43, 43, 43, 0.8); /* Highlight background color */
+        padding: 5px; /* Add padding */
+        border-radius: 5px; /* Add border radius */
+      }
+      .thumbnail {
+        width: 15%;
+        float: left;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        height: auto;
+      }
+      .project-item {
+        clear: both;
+        margin-bottom: 30px;
+      }
+      @media (max-aspect-ratio: 1/1) {
+        body {
+          font-size: 2vw; /* Adjust font size for smaller screens */
+        }
+        .tabs {
+          justify-content: space-between;
+          padding: 0px;
+          font-size: 8px; /* Adjust font size for smaller screens */
+        }
+        .tabs a {
+          display: none; /* Hide tabs on phone screens */
+        }
+        .tabs a.current {
+          font-size: 4vw;
+        }
+        .menu-button {
+          display: block; /* Show menu button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 5px;
+          font-size: 4vw;
+          cursor: pointer;
+          position: fixed;
+          border-radius: 5px;
+          top: 8px;
+          right: 10px;
+        }
+        .menu-content {
+          display: none;
+          position: absolute;
+          top: 40px;
+          right: 20px;
+          background: rgba(43, 43, 43, 1);
+          padding: 5px;
+          border-radius: 5px;
+          z-index: 1001;
+        }
+        .menu-content a {
+          display: block;
+          color: #F7CE46;
+          text-decoration: none;
+          margin: 5px 0;
+          padding: 5px;
+          font-size: 4vw;
+        }
+        .left-bar {
+          width: 80px; /* Adjust width for smaller screens */
+          padding: 4px;
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          top: 7px;
+          border-radius: 3px;
+        }
+        .left-bar img {
+          width: 60px; /* Smaller image for smaller screens */
+          height: 60px;
+          margin-bottom: 2px;
+          margin-left: 5px;
+        }
+        .left-bar ul li {
+          margin: 5px 0px;
+        }
+        .left-bar ul li a {
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          padding: 2px;
+          margin-top: 2px;
+        }
+        .toc-button {
+          display: block; /* Show table of content button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 3px 3px;
+          font-size: 2vw;
+          cursor: pointer;
+          border-radius: 3px;
+          margin-top: 3px;
+        }
+        .toc-content {
+          display: none;
+          background: rgba(51, 51, 51, 0.9);
+          color: #F7CE46;
+          padding: 8px;
+          border-radius: 5px;
+          margin-left: 5px;
+          width: 100%;
+          font-size: 2vw;
+        }
+        .toc-content a {
+          display: block;
+          text-decoration: none;
+          margin: 5px 5px;
+          padding: 5px;
+          font-size: 2vw;
+        }
+        .content {
+          padding: 15px;
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          margin-top: 0px;
+          margin-left: 75px;
+        }
+        .bash-command {
+          font-family: monospace;
+          background: #272727;
+          color: rgb(221,221,221);
+          padding: 0px;
+          border-radius: 5px;
+          overflow-x: auto;
+          white-space: pre;
+          font-size: 8px;
+          display: block;
+          width: 330px;
+          margin: 0px;
+        }
+        .thumbnail {
+          width: 50%;
+        }
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-perl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-r.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="tabs">
+      <button class="menu-button" onclick="toggleMenu()">Menu</button>
+      <div class="menu-content" id="menu-content">
+        <nav>
+  
+    <a href="/">Home</a>
+  
+    <a href="/about.html">About me</a>
+  
+    <a href="/projects.html">Projects/ tools development</a>
+  
+    <a href="/data_viz.html">Data visualization</a>
+  
+    <a href="/blog.html">Blog</a>
+  
+</nav>
+      </div>
+    </div>
+    <div class="container">
+      <div class="left-bar">
+        <img src="/assets/images/page_img.jpg" alt="Profile Picture">
+        <button class="toc-button" onclick="toggleToc()">Table of Content</button>
+        <div class="toc-content" id="toc-content">
+          <ul>
+            
+              <li><a href="#chapter1">Introduction</a></li>
+            
+              <li><a href="#chapter2">Ancestry distribution</a></li>
+            
+              <li><a href="#chapter3">Disparities in drug response</a></li>
+            
+              <li><a href="#chapter4">Discussion</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <p><a id="chapter1"></a>
+Cancer research has long relied on the use of in vitro cell lines as pivotal models to understand the mechanisms of the disease and evaluate potential treatments. These cell lines allow researchers to simulate biological processes in a controlled environment, enabling reproducibility and scalability. However, a major limitation of many studies is the lack of comprehensive demographic and genetic characterization of the cell lines used. Specifically, the underrepresentation or incomplete identification of ancestry information poses challenges to the generalizability and precision of research outcomes. Understanding the ancestry of cell lines is critical as it provides context for genetic variations, disease susceptibility, and drug response patterns among diverse populations. Addressing this gap is essential for achieving equitable and effective cancer therapies.</p>
+
+<h2 id="ancestry-distribution-among-cancer-cell-lines">Ancestry distribution among cancer cell lines</h2>
+<p><a id="chapter2"></a>
+To tackle this issue, I developed an ancestry inference pipeline designed to accurately classify the genetic backgrounds of a wide range of cancer cell lines. Leveraging extensive genetic data of the cell lines, the available reference genomes for all ancestries and Bayesian statistics, the pipeline infer ancestry with high precision. Details of the pipeline could be found in a <a href="/project/ancestry_inference.html">separate post</a>. To this end I leveraged the cell lines and their genotype data obtained from the <a href="https://www.cancerrxgene.org/">Genomics of Drug Sensitivity in Cancer (GDSC) project</a> and the reference genomes from the five major ancestries from the <a href="https://www.nature.com/articles/nature15393">1000 Genomes Project</a>. The analysis revealed a detailed distribution of ancestries across commonly used cancer cell lines, highlighting a predominance of European-derived lines alongside underrepresentation of African, Asian, and other ancestries (<strong>Figure 1</strong>).</p>
+
+<div style="text-align: center; max-width: 70%; margin: auto;">
+  <img src="/assets/images/ancestry_fig1.png" alt="Figure 1" style="width: 100%; height: auto;" />
+  <p style="width: 100%;"><strong>Figure 1. Distribution of ancestries in cancer cell lines across cancer types.</strong> European cell lines are predominantly represented in all cancer types.</p> 
+</div>
+
+<p>The ancestries identified segregated tightly together and away from other ancestries when visualized using PCA on genetic data (<strong>Figure 2</strong>). Importantly, the inferred ancestry classifications were cross-validated against known demographic information in the <a href="https://sites.broadinstitute.org/ccle/">Cancer Cell Line Encyclopedia project (CCLE)</a>, demonstrating strong consistency and reliability of the methodology (<strong>Figure 3</strong>). These findings underscore the utility of the pipeline in providing a clearer demographic landscape of cancer cell lines and emphasize the necessity of incorporating diverse genetic backgrounds in cancer research.</p>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <div style="text-align: center;">
+    <img src="/assets/images/ancestry_fig2.png" alt="Figure 2" style="max-width: 60%; height: auto;" />
+    <p style="max-width: 70%; margin: auto;"><strong>Figure 2. PCA of the three major ancestries of cancer cell lines.</strong></p> 
+  </div>
+  <div style="text-align: center;">
+    <img src="/assets/images/ancestry_fig3.png" alt="Figure 3" style="max-width: 50%; height: auto;" />
+    <p style="max-width: 90%; margin: auto;"><strong>Figure 3. Cell lines were accurately classified into ancestries using our pipeline, when compared against CCLE information</strong></p> 
+  </div>
+</div>
+
+<h2 id="disparities-in-drug-response-between-asian-and-caucasian-cell-lines">Disparities in drug response between Asian and Caucasian cell lines</h2>
+<p><a id="chapter3"></a>
+An intriguing aspect of the study is its exploration of disparities in drug responses between Asian and Caucasian cell lines. One-way ANOVA tests revealed 59 significant associations between ancestry and drug response across nine cancer types. Asian cell lines demonstrated heightened sensitivity to PI3K/mTOR inhibitors in glioblastoma (GBM), particularly drugs like apitolisib (Cohen’s d = −1.73), torin 2 (Cohen’s d = −1.87), and WYE-125132 (Cohen’s d = −1.91) (<strong>Figure 4a</strong>). These findings were linked to enriched targets, such as PI3K and mTOR pathways, in Asian GBM cell lines. Conversely, Caucasian cell lines showed greater sensitivity in colorectal adenocarcinoma (COREAD), with all 16 significant associations favoring drugs like anthracyclines (e.g., doxorubicin and epirubicin) (<strong>Figure 4b</strong>). Additionally, Caucasian-derived low-grade glioma (LGG) cell lines exhibited higher sensitivity to irreversible tyrosine kinase inhibitors, such as AST-1306 and CI-1033, targeting EGFR pathways (<strong>Figure 4c</strong>). While somatic mutations, such as NF1 in Asian GBM and MLL2 or PIK3R1 in COREAD, were more prevalent in specific ancestries, they did not fully account for the observed variability in drug responses. These results highlight the critical role of ancestry-informed biomarkers in guiding cancer therapies and suggest opportunities to tailor treatments for improved outcomes in diverse populations.</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/ancestry_fig4.png" alt="Figure 4" style="max-width: 60%; height: auto;" />
+  <p style="max-width: 80%; margin: auto;"><strong>Figure 4. Significant associations between drug response and ancestries (Asian and Caucasian)</strong></p> 
+</div>
+
+<h2 id="discussion">Discussion</h2>
+<p><a id="chapter4"></a>
+The novel findings of this study lie in its development of a robust ancestry inference pipeline, which accurately classifies the genetic backgrounds of cancer cell lines. This analysis revealed a predominantly European ancestry distribution, underscoring the need for broader representation of non-European genetic backgrounds in cancer research. These findings have significant implications for the development of more inclusive cancer therapies and equitable healthcare solutions.</p>
+
+<p>That being said, the study is not without limitations. The limited genetic information available for certain cell lines poses challenges in fully validating ancestry-specific biomarkers and their clinical relevance. Although there are many available genomic imputation techniques, the reliability of these methods is still under evaluation. Furthermore, inherent differences between in vitro cell line models and in vivo human cancer processes may limit the applicability of the findings to clinical settings. Experimental validation and observational data should be leveraged to validate the findings. The authors highlight the necessity of incorporating more diverse genomic data and refining methodologies to bridge these gaps, ensuring that future research captures the complexity and heterogeneity of cancer across all populations.</p>
+
+<p>For an in-depth discussion of this study please visit the <a href="https://www.mdpi.com/1422-0067/22/18/10135">original publication</a>. Code for the analysis and computational pipeline could be found on my <a href="https://github.com/phngbh/EIC">github repository</a>.</p>
+
+      </div>
+    </div>
+    <script>
+      function toggleMenu() {
+        var menuContent = document.getElementById('menu-content');
+        if (menuContent.style.display === 'block') {
+          menuContent.style.display = 'none';
+        } else {
+          menuContent.style.display = 'block';
+        }
+      }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('menu-content');
+        var menuButton = document.querySelector('.menu-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
+      function toggleToc() {
+        var tocContent = document.getElementById('toc-content');
+        if (tocContent.style.display === 'block') {
+          tocContent.style.display = 'none';
+        } else {
+          tocContent.style.display = 'block';
+        }
+      }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('toc-content');
+        var menuButton = document.querySelector('.toc-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

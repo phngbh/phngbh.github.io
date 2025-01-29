@@ -3,22 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff</title>
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" />
+    <title>Projects/ tools development</title>
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Staff</title>
+<title>Projects/ tools development</title>
 <meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="Staff" />
+<meta property="og:title" content="Projects/ tools development" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://localhost:4000/projects.html" />
-<meta property="og:url" content="http://localhost:4000/projects.html" />
+<link rel="canonical" href="http://localhost:4001/projects.html" />
+<meta property="og:url" content="http://localhost:4001/projects.html" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Staff" />
+<meta property="twitter:title" content="Projects/ tools development" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","headline":"Staff","url":"http://localhost:4000/projects.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"Projects/ tools development","url":"http://localhost:4001/projects.html"}</script>
 <!-- End Jekyll SEO tag -->
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
       body {
         background: rgba(64,64,64,0.8);
@@ -29,16 +30,16 @@
         flex-direction: column;
         height: 100vh;
         color: white;
-        font-size: 20px;
+        font-size: 2vw;
       }
       .tabs {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 20px;
+        padding: 0.8vw;
         background: rgba(43, 43, 43, 1); /* Coffee color with reduced opacity */
-        font-size: 20px;
+        font-size: 3vw;
         position: fixed;
       }
       .tabs a {
@@ -47,14 +48,14 @@
         margin: 0 10px;
         padding: 10px;
         background: none;
-        border-radius: 5px;
-        font-size: 18px;
+        border-radius: 1vw;
+        font-size: 1.3vw;
       }
       .tabs a.current {
         background: #F7CE46; /* Different color for the current page */
         color: rgba(43, 43, 43, 1);
-        border-radius: 10px;
-        font-size: 20px;
+        border-radius: 1vw;
+        font-size: 1.5vw;
       }
       .menu-button {
         display: none; /* Hide by default */
@@ -68,47 +69,90 @@
       }
       .left-bar {
         background: rgba(51, 51, 51, 0.9); /* Coffee color with reduced opacity */
-        width: 200px;
-        padding: 20px;
+        width: 16vw;
+        padding: 0.5vw;
         position: fixed;
-        top: 50px;
+        top: 5vw;
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 10px;
+        font-size: 2.5vw;
       }
       .left-bar img {
         border-radius: 50%;
-        width: 150px;
-        height: 150px;
+        width: 10vw;
+        height: 10vw;
         object-fit: cover;
-        margin-bottom: 15px;
-        margin-left: 10px;
+        margin-bottom: 0.5vw;
+        margin-left: 0.8vw;
       }
       .left-bar ul {
         list-style: none;
         padding: 0;
       }
       .left-bar ul li {
-        margin: 15px 0px;
+        margin: 0.3vw 0.3vw;
       }
       .left-bar ul li a {
         color: rgb(221,221,221);
         text-decoration: none;
-        font-size: 18px;
+        font-size: 1.2vw;
       }
       .content {
         flex: 1;
         padding: 40px;
         background: rgba(64,64,64,0.8); /* Different color for the content area */
         color: rgb(221,221,221);
-        font-size: 18px;
+        font-size: 1vw;
         margin-left: 230px;
         margin-top: 40px;
       }
+      .content a {
+        color: #F7CE46; /* Change hyperlink color */
+      }
+      .bash-command {
+          font-family: monospace;
+          background: #272727;
+          color: rgb(221,221,221);
+          padding: 0px;
+          margin: 0px;
+          border-radius: 5px;
+          overflow-x: auto;
+          white-space: pre;
+          font-size: 1vw;
+          display: block;
+          width: 1100px;
+      }
+      pre[class*="language-"] {
+        background: #272727;
+        padding: 0px;
+        margin: 0px;
+        border-radius: 5px;
+        overflow-x: auto;
+        display: block;
+        width: 1100px;
+      }
+      /* Custom styles for headers */
+      h1, h2, h3, h4, h5, h6 {
+        color: #F7CE46; /* Change header color */
+        background-color: rgba(43, 43, 43, 0.8); /* Highlight background color */
+        padding: 5px; /* Add padding */
+        border-radius: 5px; /* Add border radius */
+      }
+      .thumbnail {
+        width: 15%;
+        float: left;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        height: auto;
+      }
+      .project-item {
+        clear: both;
+        margin-bottom: 30px;
+      }
       @media (max-aspect-ratio: 1/1) {
         body {
-          font-size: 15px; /* Adjust font size for smaller screens */
+          font-size: 2vw; /* Adjust font size for smaller screens */
         }
         .tabs {
           justify-content: space-between;
@@ -119,28 +163,28 @@
           display: none; /* Hide tabs on phone screens */
         }
         .tabs a.current {
-          font-size: 12px;
+          font-size: 4vw;
         }
         .menu-button {
           display: block; /* Show menu button on phone screens */
           background: #F7CE46;
           color: rgba(43, 43, 43, 1);
           border: none;
-          padding: 10px;
-          font-size: 15px;
+          padding: 5px;
+          font-size: 4vw;
           cursor: pointer;
           position: fixed;
           border-radius: 5px;
-          top: 10px;
-          right: 20px;
+          top: 8px;
+          right: 10px;
         }
         .menu-content {
           display: none;
           position: absolute;
-          top: 60px;
+          top: 40px;
           right: 20px;
           background: rgba(43, 43, 43, 1);
-          padding: 10px;
+          padding: 5px;
           border-radius: 5px;
           z-index: 1001;
         }
@@ -150,18 +194,18 @@
           text-decoration: none;
           margin: 5px 0;
           padding: 5px;
-          font-size: 12px;
+          font-size: 4vw;
         }
         .left-bar {
-          width: 70px; /* Adjust width for smaller screens */
+          width: 80px; /* Adjust width for smaller screens */
           padding: 4px;
-          font-size: 8px; /* Adjust font size for smaller screens */
+          font-size: 2vw; /* Adjust font size for smaller screens */
           top: 7px;
           border-radius: 3px;
         }
         .left-bar img {
-          width: 50px; /* Smaller image for smaller screens */
-          height: 50px;
+          width: 60px; /* Smaller image for smaller screens */
+          height: 60px;
           margin-bottom: 2px;
           margin-left: 5px;
         }
@@ -169,7 +213,7 @@
           margin: 5px 0px;
         }
         .left-bar ul li a {
-          font-size: 6px; /* Adjust font size for smaller screens */
+          font-size: 2vw; /* Adjust font size for smaller screens */
           padding: 2px;
           margin-top: 2px;
         }
@@ -178,8 +222,8 @@
           background: #F7CE46;
           color: rgba(43, 43, 43, 1);
           border: none;
-          padding: 7px;
-          font-size: 10px;
+          padding: 3px 3px;
+          font-size: 2vw;
           cursor: pointer;
           border-radius: 3px;
           margin-top: 3px;
@@ -188,26 +232,49 @@
           display: none;
           background: rgba(51, 51, 51, 0.9);
           color: #F7CE46;
-          padding: 10px;
+          padding: 8px;
           border-radius: 5px;
-          margin-left: 2px;
-          width: 80%;
+          margin-left: 5px;
+          width: 100%;
+          font-size: 2vw;
         }
         .toc-content a {
           display: block;
           text-decoration: none;
-          margin: 5px 0;
+          margin: 5px 5px;
           padding: 5px;
-          font-size: 15px;
+          font-size: 2vw;
         }
         .content {
           padding: 15px;
-          font-size: 10px; /* Adjust font size for smaller screens */
+          font-size: 2vw; /* Adjust font size for smaller screens */
           margin-top: 0px;
           margin-left: 75px;
         }
+        .bash-command {
+          font-family: monospace;
+          background: #272727;
+          color: rgb(221,221,221);
+          padding: 0px;
+          border-radius: 5px;
+          overflow-x: auto;
+          white-space: pre;
+          font-size: 8px;
+          display: block;
+          width: 330px;
+          margin: 0px;
+        }
+        .thumbnail {
+          width: 50%;
+        }
       }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-perl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-r.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <div class="tabs">
@@ -219,46 +286,74 @@
   
     <a href="/about.html">About me</a>
   
-    <a href="/projects.html" class="current">Projects/ tools developemt</a>
+    <a href="/projects.html" class="current">Projects/ tools development</a>
   
     <a href="/data_viz.html">Data visualization</a>
   
     <a href="/blog.html">Blog</a>
-  
-    <a href="/random.html">Personal space</a>
   
 </nav>
       </div>
     </div>
     <div class="container">
       <div class="left-bar">
-        <img src="assets/images/page_img.jpg" alt="Profile Picture">
+        <img src="/assets/images/page_img.jpg" alt="Profile Picture">
         <button class="toc-button" onclick="toggleToc()">Table of Content</button>
         <div class="toc-content" id="toc-content">
           <ul>
-            <li><a href="#section1">Section 1</a></li>
-            <li><a href="#section2">Section 2</a></li>
-            <li><a href="#section3">Section 3</a></li>
-            <!-- Add more menu items as needed -->
+            
           </ul>
         </div>
       </div>
       <div class="content">
-        <h1>Staff</h1>
+        <h1>Projects</h1>
 
 <ul>
   
-    <li>
-      <h2><a href="/authors/jill/">Jill Smith</a></h2>
-      <h3>Chief Editor</h3>
-      <p><p>Jill is an avid fruit grower based in the south of France.</p>
+    <li class="project-item">
+      <h3><a href="/projects/1.imml_dspn/">Interpretable integration of multiomic data to study complex diseases: The DSPN study</a></h3>
+      <img class="thumbnail" src="/assets/images/imml_dspn_fig4.png" alt="Interpretable integration of multiomic data to study complex diseases: The DSPN study thumbnail" />
+      <p><p><a id="chapter1"></a>
+Complex diseases present a significant challenge to modern medicine due to their multifactorial nature. Understanding these diseases requires the integration of diverse datasets that encompass clinical, environmental, genetic and metabolic factors. In recent years, together with the advances of molecular characterization technologies, the emergence of large multiomic and clinical datasets has opened new opportunities to study such diseases comprehensively. In this article, I discuss the challenges of stdudying complex diseases using multimodal datasets, our approach to tackle these challenges and an example study to demonstrate the effectiveness of our method.</p>
 </p>
     </li>
   
-    <li>
-      <h2><a href="/authors/ted/">Ted Doe</a></h2>
-      <h3>Writer</h3>
-      <p><p>Ted has been eating fruit since he was baby.</p>
+    <li class="project-item">
+      <h3><a href="/projects/2.imml/">The Interpretable Multimodal Machine Learning (IMML) framework</a></h3>
+      <img class="thumbnail" src="/assets/images/imml_fig1.png" alt="The Interpretable Multimodal Machine Learning (IMML) framework thumbnail" />
+      <p><p><a id="chapter1"></a>
+In the <a href="../projects/1.imml_dspn">previous post</a> we got to know the IMML and its application in the DSPN study. In this post I would like to go more into details of the algorithm, how it is constructed, what it actually does underneath and how it helps in studying complex deseases. This is more of a discription of the algorithm, rather than a coding tutorial. For a full on tutorial of how to actually use IMML, please visit my <a href="https://github.com/phngbh/IMML">github repository</a>.</p>
+</p>
+    </li>
+  
+    <li class="project-item">
+      <h3><a href="/projects/3.dpv/">Prognosis of type 2 diabetes leveraging pretrained large language model for longitudinal medical records</a></h3>
+      <img class="thumbnail" src="/assets/images/dpv_fig4.png" alt="Prognosis of type 2 diabetes leveraging pretrained large language model for longitudinal medical records thumbnail" />
+      <p><p><a id="chapter1"></a>
+Type 2 diabetes (T2D) is a chronic metabolic disorder characterized by elevated blood glucose levels and is linked to severe microvascular and macrovascular complications such as cardiovascular diseases, neuropathy, nephropathy, and retinopathy, which significantly contribute to global morbidity and mortality. With T2D prevalence rising worldwide, effective management and early prognosis of its complications are essential for reducing healthcare costs and improving patient outcomes. This project aims to assist T2D leveraging availablity of large medical datasets and advancements in AI-driven large language models.</p>
+</p>
+    </li>
+  
+    <li class="project-item">
+      <h3><a href="/projects/4.dpv_architecture/">The adaptation of pretrained LLM to the medical domain</a></h3>
+      <img class="thumbnail" src="/assets/images/dpv_fig3.png" alt="The adaptation of pretrained LLM to the medical domain thumbnail" />
+      <p><p>In this post, I aim to provide you with the technical details of how I adapted the natural language-based LLMs to longitudinal sparse numerical data of medical domain. Particularly, I will describe how I generated synthetic data to overcome the issues of data privacy and resource limitations; and the architecture of the adapted LLMs to bridge the gaps between the two domains. For details of applications and performance, please visit the <a href="../projects/3.dpv">previous post</a>.</p>
+</p>
+    </li>
+  
+    <li class="project-item">
+      <h3><a href="/projects/5.ancestry/">Evaluation of the impact of ancestry to drug response in cancer cell lines</a></h3>
+      <img class="thumbnail" src="/assets/images/ancestry_fig2.png" alt="Evaluation of the impact of ancestry to drug response in cancer cell lines thumbnail" />
+      <p><p><a id="chapter1"></a>
+Cancer research has long relied on the use of in vitro cell lines as pivotal models to understand the mechanisms of the disease and evaluate potential treatments. These cell lines allow researchers to simulate biological processes in a controlled environment, enabling reproducibility and scalability. However, a major limitation of many studies is the lack of comprehensive demographic and genetic characterization of the cell lines used. Specifically, the underrepresentation or incomplete identification of ancestry information poses challenges to the generalizability and precision of research outcomes. Understanding the ancestry of cell lines is critical as it provides context for genetic variations, disease susceptibility, and drug response patterns among diverse populations. Addressing this gap is essential for achieving equitable and effective cancer therapies.</p>
+</p>
+    </li>
+  
+    <li class="project-item">
+      <h3><a href="/projects/6.ancestry_inference/">Bayesian inference pipeline to infer ancestry for cancer cell lines leveraging observed genotypes</a></h3>
+      <img class="thumbnail" src="/assets/images/ancestry_fig3.png" alt="Bayesian inference pipeline to infer ancestry for cancer cell lines leveraging observed genotypes thumbnail" />
+      <p><p><a id="chapter1"></a>
+My previous <a href="https://www.mdpi.com/1422-0067/22/18/10135">paper</a> pointed out that ancestry is important for understanding the genetic diversity of cancer cell lines and their implications for therapeutic responses. This tutorial outlines the computational pipeline that I derived to reliably classify cancer cell lines into ancestries based on genotype data. The pipeline consists of three key stages: data processing, quality control, genotype imputation, and ancestry inference, each explained in detail to guide its implementation.</p>
 </p>
     </li>
   
@@ -275,7 +370,14 @@
           menuContent.style.display = 'block';
         }
       }
-
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('menu-content');
+        var menuButton = document.querySelector('.menu-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
       function toggleToc() {
         var tocContent = document.getElementById('toc-content');
         if (tocContent.style.display === 'block') {
@@ -284,6 +386,14 @@
           tocContent.style.display = 'block';
         }
       }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('toc-content');
+        var menuButton = document.querySelector('.toc-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
     </script>
   </body>
 </html>

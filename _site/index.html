@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Home</title>
 <meta name="generator" content="Jekyll v4.3.4" />
 <meta property="og:title" content="Home" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="http://localhost:4001/" />
+<meta property="og:url" content="http://localhost:4001/" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Home" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","headline":"Home","url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","headline":"Home","url":"http://localhost:4001/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <style>
@@ -48,13 +48,13 @@
         margin: 0 10px;
         padding: 10px;
         background: none;
-        font-size: 20px;
+        font-size: 1.5vw;
         text-transform: uppercase; /* Capitalize text */
       }
       .content {
         background: none; /* Semi-transparent background */
-        padding: 20px;
-        border-radius: 10px;
+        padding: 2vw;
+        border-radius: 1vw;
         width: 60%; /* Adjust width as needed */
         max-width: 70%;
         text-align: left; /* Align text to the left */
@@ -62,17 +62,14 @@
         position: absolute;
         transform: translate(-50%, -50%);
         z-index: 2;
-        font-size: 16px; /* Change the font size here */
+        font-size: 3vw; /* Change the font size here */
         font-family: Consolas; /* Change the font family */
         display: none; /* Hide by default */
       }
-      .content a {
-        color: #F7CE46; /* Change hyperlink color */
-      }
       .content-second {
         background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
-        padding: 20px;
-        border-radius: 10px;
+        padding: 1vw;
+        border-radius: 1vw;
         width: 60%; /* Adjust width as needed */
         max-width: 70%;
         text-align: left; /* Align text to the left */
@@ -82,7 +79,7 @@
         left: 35%;
         transform: translate(-50%, -50%);
         z-index: 2;
-        font-size: 16px; /* Change the font size here */
+        font-size: 1.2vw; /* Change the font size here */
         font-family: Century Gothic; /* Change the font family */
       }
       .content-second a {
@@ -92,6 +89,7 @@
         background-size: cover;
         background-position: right; /* Fit the background image from the right */
         height: 100vh;
+        min-height: 100vh;
         width: 100%;
         position: relative;
       }
@@ -111,37 +109,36 @@
         background: rgba(0, 0, 0, 0.5);
         color: white;
         border: none;
-        padding: 10px;
-        font-size: 20px;
+        padding: 2vw;
+        font-size: 4vw;
         cursor: pointer;
         z-index: 3;
       }
       .menu {
         display: none; /* Hide by default */
-        flex-direction: column;
         align-items: flex-start;
         position: fixed;
         top: 50px;
         right: 10px;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-        border-radius: 10px;
-        z-index: 3;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 2vw;
+        border-radius: 1vw;
+        z-index: 5;
       }
       .menu a {
         color: white;
         text-decoration: none;
-        margin: 5px 0;
-        padding: 10px;
+        margin-top: 25px;
+        padding: 2vw;
         background: none;
-        font-size: 20px;
+        font-size: 15px;
         text-transform: uppercase; /* Capitalize text */
       }
       .scroll-down {
         display: none; /* Hide by default */
         position: absolute;
-        font-size: 40px;
-        bottom: 20px;
+        font-size: 10vw;
+        bottom: 1vw;
         left: 50%;
         transform: translateX(-50%);
         color: white;
@@ -157,10 +154,22 @@
           display: none;
         }
         .menu-button {
-          display: block; /* Show only on phone screens */
+          display: none; /* Hide by default */
+        }
+        .background-2 .menu-button {
+            display: block; /* Show the menu button only in the second background */
+            flex-direction: column;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: none;
+            cursor: pointer;
         }
         .menu a {
             font-size: 15px;
+            margin-bottom: 20px;
         }
         .background {
           height: 100vh; /* Each background fits the height of the screen */
@@ -168,13 +177,16 @@
         .background-1, .background-2 {
           position: absolute;
           width: 100%;
-          height: 100vh;
         }
         .background-2 {
           top: 100vh; /* Position the second background below the first */
           opacity: 1;
+          background-repeat: repeat-y; /* Repeat background vertically */
+          background-size: cover; /* Ensure the background covers the entire width */
         }
         .content {
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
           top: 70%;
           left: 50%;
           transform: translate(-50%, -50%);
@@ -183,10 +195,11 @@
         }
         .scroll-down {
           display: block; /* Show only on phone screens */
+          top: 90%;
         }
         .content-second {
           background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-          padding: 15px;
+          padding: 2vw;
           border-radius: 0px;
           width: 90%; /* Adjust width as needed */
           max-width: 90%;
@@ -197,7 +210,7 @@
           left: 50%;
           transform: translate(-50%, -50%);
           z-index: 2;
-          font-size: 16px; /* Change the font size here */
+          font-size: 3.2vw; /* Change the font size here */
           font-family: Century Gothic; /* Change the font family */
         }
         .content-second a {
@@ -207,43 +220,42 @@
     </style>
   </head>
   <body>
-    <button class="menu-button" onclick="toggleMenu()">Menu</button>
-    <div class="menu" id="menu">
-      <a href="./about.html">About me</a>
-      <a href="./projects.html">Projects/ Tools development</a>
-      <a href="./data_viz.html">Data visualization</a>
-      <a href="./blog.html">Blog</a>
-      <a href="./random.html">Personal space</a>
-    </div>
     <div class="tabs">
       <a href="./about.html">About me</a>
       <a href="./projects.html">Projects/ Tools development</a>
       <a href="./data_viz.html">Data visualization</a>
       <a href="./blog.html">Blog</a>
-      <a href="./random.html">Personal space</a>
     </div>
     <div class="background background-1">
       <div class="content">
         <h1>Phong BH. Nguyen</h1>
-        <h2>Scientist, programmer, adventurer</h2>
+        <h2><i>Scientist, programmer, adventurer</i></h2>
         <br>
         <br>
-        <div class="scroll-down">↓ ↓ ↓</div>
       </div>
+      <div class="scroll-down">↓ ↓ ↓</div>
+    </div>
     </div>
     <div class="background background-2">
+      <button class="menu-button" onclick="toggleMenu()">Menu</button>
+      <div class="menu" id="menu">
+          <a href="./about.html">About me</a><br>
+          <a href="./projects.html">Projects/ Tools development</a><br>
+          <a href="./data_viz.html">Data visualization</a><br>
+          <a href="./blog.html">Blog</a><br>
+      </div>
       <div class="content-second">
         <h3 id="hi-guys-welcome-to-my-personal-page">Hi guys, welcome to my personal page.</h3>
 
-<p>My name is Phong BH. Nguyen (don’t even try to pronounce it :D), a scientist, programmer and adventurer, with an interest in all kinds of creative and artistic works. This website serves as a single starting point for everyone to get to know me, almost everything that makes up who I am, professionally and personally.</p>
+<p>My name is Phong BH. Nguyen (I know, it’s hard to pronounce), a scientist, programmer and adventurer, with a taste for all things creative and artistic. This site serves as a single starting point for everyone to get to know me, things that make up who I am, professionally and personally.</p>
 
-<p>I am a bioinformatician/ data scientist with a particular interest in health and medical informatics for non-communicable diseases such as diabetes, cancer and cardiovascular diseases. My research mainly focuses on developing machine learning framework to better understand diseases, discover biomarkers for diagnosis and prognosis and assist clinical decision making. The ultimate goal is to make medicine more translational and benefit patients. You can get to know more about my backdround and experience in <a href="./about.html">About me</a>, <a href="./projects.html">Projects</a> and <a href="./data_viz.html">Data visualization</a>.</p>
+<p>I am a bioinformatician/ data scientist with a particular interest in health and medical informatics for non-communicable diseases such as diabetes, cancer and cardiovascular diseases. My research mainly focuses on developing machine learning frameworks to better understand diseases, discover biomarkers for diagnosis and prognosis and assist clinical decision making. The ultimate goal is to make medicine more translational and benefit patients. You can get to know more about my backdround and experience in <a href="./about.html">About me</a>, <a href="./projects.html">Projects</a> and <a href="./data_viz.html">Data visualization</a>.</p>
 
-<p>My daily work circles around understanding and utilizing data. I leverage different programming languages to write everything from data processing and engineering code to larger framework to streamline workflows for both research and clinical practice. In addition, I have a massive interest in data visualization, ways to make sense of data, discover new insights and showcase research findings. Get to know more about my work in <a href="./projects.html">Projects</a> and <a href="./data_viz.html">Data visualization</a>.</p>
+<p>My daily work circles around understanding and utilizing data. I leverage different programming languages to write everything from data processing and engineering code to larger frameworks to streamline workflows for both research and clinical practice. In addition, I have a massive interest in data visualization, asthetical ways to make sense of data, discover new insights and showcase research findings. Get to know more about my work in <a href="./projects.html">Projects</a>, <a href="./data_viz.html">Data visualization</a> and <a href="./blog.html">Blog</a>.</p>
 
-<p>Besides work, I try to be more active in life. At first it was pure peer pressure (I live in Bavaria, Germany), but now I really enjoy doing sports like hiking, skiing, cycling, swimming, weightlifting and of course badminton (tell you I’m Asian without telling you I’m Asian :D). I also have a creative side, when I don’t go out I like to write cheesy poems, paint big ass paintings, cook some risky recipes or just simply read and listen to music. Check out my <a href="./random.html">Personal space</a> and <a href="./blog.html">Blog</a> for some of these stuffs.</p>
+<p>Besides work, I have an active lifestyle. At first it was pure peer pressure, but now I really enjoy doing sports like hiking, skiing, cycling, swimming, weightlifting and badminton (tell you I’m Asian without telling you I’m Asian). I also have a creative side, when I don’t go out I like to write cheesy poems, paint big ass paintings, cook risky recipes or just simply read and listen to music. I might write a bit about these stuffs here in the near future.</p>
 
-<p>If you want to get in touch, drop me a message here.</p>
+<p>If you want to get in touch, just drop me a message in one of the social platforms in <a href="./about.html">my contact info</a>.</p>
 
       </div>
     </div>
@@ -256,7 +268,14 @@
           menu.style.display = 'block';
         }
       }
-
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('menu');
+        var menuButton = document.querySelector('.menu-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
       function checkScreenSize() {
         if (window.innerWidth <= window.innerHeight) {
             document.querySelector('.background-1').style.display = 'block';

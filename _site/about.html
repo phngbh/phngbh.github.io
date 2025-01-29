@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>About</title>
 <meta name="generator" content="Jekyll v4.3.4" />
 <meta property="og:title" content="About" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://localhost:4000/about.html" />
-<meta property="og:url" content="http://localhost:4000/about.html" />
+<link rel="canonical" href="http://localhost:4001/about.html" />
+<meta property="og:url" content="http://localhost:4001/about.html" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="About" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","headline":"About","url":"http://localhost:4000/about.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"About","url":"http://localhost:4001/about.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <style>
@@ -29,16 +29,16 @@
         flex-direction: column;
         height: 100vh;
         color: white;
-        font-size: 20px;
+        font-size: 2vw;
       }
       .tabs {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 20px;
+        padding: 0.8vw;
         background: rgba(43, 43, 43, 1); /* Coffee color with reduced opacity */
-        font-size: 20px;
+        font-size: 3vw;
         position: fixed;
       }
       .tabs a {
@@ -47,14 +47,14 @@
         margin: 0 10px;
         padding: 10px;
         background: none;
-        border-radius: 5px;
-        font-size: 18px;
+        border-radius: 1vw;
+        font-size: 1.3vw;
       }
       .tabs a.current {
         background: #F7CE46; /* Different color for the current page */
         color: rgba(43, 43, 43, 1);
-        border-radius: 10px;
-        font-size: 20px;
+        border-radius: 1vw;
+        font-size: 1.5vw;
       }
       .menu-button {
         display: none; /* Hide by default */
@@ -68,47 +68,57 @@
       }
       .left-bar {
         background: rgba(51, 51, 51, 0.9); /* Coffee color with reduced opacity */
-        width: 200px;
-        padding: 20px;
+        width: 16vw;
+        padding: 0.5vw;
         position: fixed;
-        top: 50px;
+        top: 5vw;
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 10px;
+        font-size: 2.5vw;
       }
       .left-bar img {
         border-radius: 50%;
-        width: 150px;
-        height: 150px;
+        width: 10vw;
+        height: 10vw;
         object-fit: cover;
-        margin-bottom: 15px;
-        margin-left: 10px;
+        margin-bottom: 0.5vw;
+        margin-left: 0.8vw;
       }
       .left-bar ul {
         list-style: none;
         padding: 0;
       }
       .left-bar ul li {
-        margin: 15px 0px;
+        margin: 0.3vw 0.3vw;
       }
       .left-bar ul li a {
         color: rgb(221,221,221);
         text-decoration: none;
-        font-size: 18px;
+        font-size: 1.2vw;
       }
       .content {
         flex: 1;
         padding: 40px;
         background: rgba(64,64,64,0.8); /* Different color for the content area */
         color: rgb(221,221,221);
-        font-size: 18px;
+        font-size: 1vw;
         margin-left: 230px;
         margin-top: 40px;
       }
+      .content a {
+        color: #F7CE46; /* Change hyperlink color */
+      }
+      /* Custom styles for headers */
+      h1, h2, h3, h4, h5, h6 {
+        color: #F7CE46; /* Change header color */
+        background-color: rgba(43, 43, 43, 0.8); /* Highlight background color */
+        padding: 5px; /* Add padding */
+        border-radius: 5px; /* Add border radius */
+      }
       @media (max-aspect-ratio: 1/1) {
         body {
-          font-size: 15px; /* Adjust font size for smaller screens */
+          font-size: 2vw; /* Adjust font size for smaller screens */
         }
         .tabs {
           justify-content: space-between;
@@ -119,7 +129,7 @@
           display: none; /* Hide tabs on phone screens */
         }
         .tabs a.current {
-          font-size: 12px;
+          font-size: 4vw;
         }
         .menu-button {
           display: block; /* Show menu button on phone screens */
@@ -127,7 +137,7 @@
           color: rgba(43, 43, 43, 1);
           border: none;
           padding: 10px;
-          font-size: 15px;
+          font-size: 4vw;
           cursor: pointer;
           position: fixed;
           border-radius: 5px;
@@ -150,18 +160,18 @@
           text-decoration: none;
           margin: 5px 0;
           padding: 5px;
-          font-size: 12px;
+          font-size: 4vw;
         }
         .left-bar {
-          width: 70px; /* Adjust width for smaller screens */
+          width: 18%; /* Adjust width for smaller screens */
           padding: 4px;
-          font-size: 8px; /* Adjust font size for smaller screens */
+          font-size: 3vw; /* Adjust font size for smaller screens */
           top: 7px;
           border-radius: 3px;
         }
         .left-bar img {
-          width: 50px; /* Smaller image for smaller screens */
-          height: 50px;
+          width: 60px; /* Smaller image for smaller screens */
+          height: 60px;
           margin-bottom: 2px;
           margin-left: 5px;
         }
@@ -169,7 +179,7 @@
           margin: 5px 0px;
         }
         .left-bar ul li a {
-          font-size: 6px; /* Adjust font size for smaller screens */
+          font-size: 3vw; /* Adjust font size for smaller screens */
           padding: 2px;
           margin-top: 2px;
         }
@@ -178,8 +188,8 @@
           background: #F7CE46;
           color: rgba(43, 43, 43, 1);
           border: none;
-          padding: 7px;
-          font-size: 10px;
+          padding: 3px 3px;
+          font-size: 3vw;
           cursor: pointer;
           border-radius: 3px;
           margin-top: 3px;
@@ -188,21 +198,22 @@
           display: none;
           background: rgba(51, 51, 51, 0.9);
           color: #F7CE46;
-          padding: 10px;
+          padding: 8px;
           border-radius: 5px;
-          margin-left: 2px;
-          width: 80%;
+          margin-left: 3px;
+          width: 100%;
+          font-size: 3vw;
         }
         .toc-content a {
           display: block;
           text-decoration: none;
           margin: 5px 0;
           padding: 5px;
-          font-size: 15px;
+          font-size: 3vw;
         }
         .content {
           padding: 15px;
-          font-size: 10px; /* Adjust font size for smaller screens */
+          font-size: 12px; /* Adjust font size for smaller screens */
           margin-top: 0px;
           margin-left: 75px;
         }
@@ -219,34 +230,176 @@
   
     <a href="/about.html" class="current">About me</a>
   
-    <a href="/projects.html">Projects/ tools developemt</a>
+    <a href="/projects.html">Projects/ tools development</a>
   
     <a href="/data_viz.html">Data visualization</a>
   
     <a href="/blog.html">Blog</a>
-  
-    <a href="/random.html">Personal space</a>
   
 </nav>
       </div>
     </div>
     <div class="container">
       <div class="left-bar">
-        <img src="assets/images/page_img.jpg" alt="Profile Picture">
+        <img src="/assets/images/page_img.jpg" alt="Profile Picture">
         <button class="toc-button" onclick="toggleToc()">Table of Content</button>
         <div class="toc-content" id="toc-content">
           <ul>
-            <li><a href="#section1">Section 1</a></li>
-            <li><a href="#section2">Section 2</a></li>
-            <li><a href="#section3">Section 3</a></li>
-            <!-- Add more menu items as needed -->
+            
+              <li><a href="#chapter1">Introduction</a></li>
+            
+              <li><a href="#chapter2">Work experience</a></li>
+            
+              <li><a href="#chapter3">Background</a></li>
+            
+              <li><a href="#chapter4">Selected publications</a></li>
+            
+              <li><a href="#chapter5">Conference attendance</a></li>
+            
+              <li><a href="#chapter6">Awards and recognitions</a></li>
+            
+              <li><a href="#chapter7">Contact</a></li>
+            
           </ul>
         </div>
       </div>
       <div class="content">
-        <h2 id="about-page">About page</h2>
+        <h2 id="introduction">Introduction</h2>
+<p><a id="chapter1"></a>
+I am a bioinformatician/ data scientist with a background in Biology. I was formally trained as an experimental scientist, got my BSc. and MSc. degrees in Molecular Biology. My PhD research was in the area of Computational Biomedicine, at the intersection of Biology, Medicine, Mathematics and Computer Science. Particularly, I am interested in leveraging machine learning and statistical approaches to understand diseases and discover biomarkers that benefit patients and further advancing precision medicine.</p>
 
-<p>This page tells you a little bit about me.</p>
+<h2 id="work-experience">Work experience</h2>
+<p><a id="chapter2"></a></p>
+
+<table>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Oct 2024 - present</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>Postdoctoral researcher</strong><br /><u>Computational Health Department - Helmholtz Munich</u><br />Leveraging machine learning and longitudinal healthcare datasets for translational precision medicine for diabetes and cardiovascular diseases</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Jun 2020 - Sep 2024</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>PhD candidate</strong><br /><u>Computational Health Department - Helmholtz Munich</u><br />Interpretable integration of multimodal datasets to build prognostic models for understanding the pathology and biomarker discovery of complex diseases</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Nov 2019 - Jun 2020</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>Intern</strong><br /><u>Computational Health Department - Helmholtz Munich</u><br />Bayesian inference and investigating the impact of ancestry information on differential drug response in high throughput screen of cancer cell lines</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Oct 2016 - Sep 2017</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>Consultant</strong><br /><u>Asia Genomics</u><br />Non-invasive genetic testing using ctDNA in liquid biopsy for screening and diagnosis of cancers and prenatal disorders</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Jul 2014 - Sep 2014</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>Intern</strong><br /><u>Nanogen Pharmaceuticals</u><br />Transfomration and in vitro cloning of marker genes</td>
+  </tr>
+</table>
+
+<h2 id="background">Background</h2>
+<p><a id="chapter3"></a></p>
+
+<table>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Jun 2020 - Sep 2024</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>PhD in Computational Biomedicine</strong><br /><u>Ludwig-Maximilian University Munich</u><br />Thesis: Leveraging Interpretable Machine Learning for Multiomic and Clinical Data Integration in Biomarker Discovery for Precision Medicine</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Sep 2017 - May 2020</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>MSc. in Molecular Biology</strong><br /><u>Ludwig-Maximilian University Munich</u><br />Thesis: A highly efficient RNA extraction method for RNA-seq protocol</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Sep 2011 - Jun 2015</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>BSc. in Biotechnology</strong><br /><u>Vietnam National University HCMC</u><br />Thesis: Optimization of high resolution melt method for analysis of a miRNA SNP in Vietnamese breast cancer population</td>
+  </tr>
+</table>
+
+<h2 id="selected-publications">Selected publications</h2>
+<p><a id="chapter4"></a></p>
+
+<p>For a full list of publications please visit my <a href="https://scholar.google.com/citations?user=82EevqIAAAAJ&amp;hl=en">Google scholar</a>.</p>
+
+<ol>
+  <li>
+    <p><strong>The Interpretable Multimodal Machine Learning (IMML) framework reveals pathological signatures of distal sensorimotor polyneuropathy</strong> <em>Communications Medicine</em>, Dec 16, 2024 <a href="https://www.nature.com/articles/s43856-024-00637-1">Show publication</a></p>
+  </li>
+  <li>
+    <p><strong>Prime-seq, efficient and powerful bulk RNA sequencing</strong> <em>Genome Biology</em>, Mar 31, 2022 <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02660-8">Show publication</a></p>
+  </li>
+  <li>
+    <p><strong>Artificial intelligence and machine learning in diabetes research</strong> <em>Der Diabetologe</em>, Oct 6, 2021 <a href="https://link.springer.com/article/10.1007/s11428-021-00817-w">Show publication</a></p>
+  </li>
+  <li>
+    <p><strong>Inferred Ancestral Origin of Cancer Cell Lines Associates with Differential Drug Response</strong> <em>Int. J. Mol. Sci.</em>, Sep 20, 2021 <a href="https://www.mdpi.com/1422-0067/22/18/10135">Show publication</a></p>
+  </li>
+</ol>
+
+<h2 id="conference-attendance">Conference attendance</h2>
+<p><a id="chapter5"></a></p>
+
+<table>
+  <tr>
+    <th style="width: 20%; text-align: left;">Date</th>
+    <th style="width: 80%; text-align: left;">Conference</th>
+  </tr>
+  <tr>
+    <td style="text-align: left; vertical-align: top;">Oct 2022</td>
+    <td style="text-align: left; vertical-align: top;">European Association for the Study of Diabetes (EASD) 58th Annual Meeting, <em>Artificial Intelligence and Machine Learning in Diabetes Research</em>, Keynote talk</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="text-align: left; vertical-align: top;">July 2023</td>
+    <td style="text-align: left; vertical-align: top;">Intelligent Systems for Molecular Biology (ISMB) 31st Conference, <em>The Interpretable Multimodal Machine Learning (IMML) framework reveals pathological signatures of distal sensorimotor polyneuropathy</em>, Poster presentation</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="text-align: left; vertical-align: top;">Sep 2024</td>
+    <td style="text-align: left; vertical-align: top;">European Conference in Computational Biology (ECCB) 23rd Conference, <em>Leveraging pretrained large language model and longitudinal medical records for prognosis of type 3 diabetes</em>, Poster presentation</td>
+  </tr>
+</table>
+<p><br /></p>
+<div style="text-align: center;">
+  <img src="assets/images/conference_img.jpg" alt="It was a great experience giving a keynote at the EASD meeting in 2022" style="max-width: 70%; height: auto;" />
+  <p><em>It was a great experience giving a keynote at the EASD meeting in 2022</em></p>
+</div>
+
+<h2 id="awards-and-recognitions">Awards and recognitions</h2>
+<p><a id="chapter6"></a></p>
+
+<table>
+  <tr>
+    <td style="text-align: left; vertical-align: top;"><strong>Outstanding Young Investigator DZD Award</strong><br /></td>
+    <td style="text-align: left; vertical-align: top;">Issued by German Center for Diabetes Research (DZD), Apr 2024</td>
+  </tr>
+  <tr><td colspan="2" style="height: 10px;"></td></tr>
+  <tr>
+    <td style="text-align: left; vertical-align: top;"><strong>Full scholarship of the first academic year</strong><br /></td>
+    <td style="text-align: left; vertical-align: top;">Issued by Vietnam National University HCMC, Sep 2011</td>
+  </tr>
+</table>
+
+<h2 id="contact">Contact</h2>
+<p><a id="chapter7"></a></p>
+
+<p>You could reach me on most of the social platforms. You can also drop me a message here to get in touch.</p>
+<div style="text-align: center;">
+  <a href="https://www.linkedin.com/in/phngbh-2019/">
+    <img src="assets/images/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; margin: 0 10px;" />
+  </a>
+  <a href="https://github.com/phngbh">
+    <img src="assets/images/github.svg" alt="GitHub" style="width: 30px; height: 30px; margin: 0 10px;" />
+  </a>
+  <a href="mailto:phong.nbh@gmail.com">
+    <img src="assets/images/gmail.png" alt="Email" style="width: 30px; height: 30px; margin: 0 10px;" />
+  </a>
+  <a href="https://x.com/phongnbh">
+    <img src="assets/images/twitter.png" alt="Twitter" style="width: 30px; height: 30px; margin: 0 10px;" />
+  </a>
+</div>
 
       </div>
     </div>
@@ -259,7 +412,14 @@
           menuContent.style.display = 'block';
         }
       }
-
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('menu-content');
+        var menuButton = document.querySelector('.menu-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
       function toggleToc() {
         var tocContent = document.getElementById('toc-content');
         if (tocContent.style.display === 'block') {
@@ -268,6 +428,14 @@
           tocContent.style.display = 'block';
         }
       }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('toc-content');
+        var menuButton = document.querySelector('.toc-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
     </script>
   </body>
 </html>

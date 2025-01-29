@@ -1,0 +1,423 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Interpretable Multimodal Machine Learning (IMML) framework</title>
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>The Interpretable Multimodal Machine Learning (IMML) framework</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="The Interpretable Multimodal Machine Learning (IMML) framework" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In the previous post we got to know the IMML and its application in the DSPN study. In this post I would like to go more into details of the algorithm, how it is constructed, what it actually does underneath and how it helps in studying complex deseases. This is more of a discription of the algorithm, rather than a coding tutorial. For a full on tutorial of how to actually use IMML, please visit my github repository." />
+<meta property="og:description" content="In the previous post we got to know the IMML and its application in the DSPN study. In this post I would like to go more into details of the algorithm, how it is constructed, what it actually does underneath and how it helps in studying complex deseases. This is more of a discription of the algorithm, rather than a coding tutorial. For a full on tutorial of how to actually use IMML, please visit my github repository." />
+<link rel="canonical" href="http://localhost:4001/projects/2.imml/" />
+<meta property="og:url" content="http://localhost:4001/projects/2.imml/" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-30T00:47:53+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The Interpretable Multimodal Machine Learning (IMML) framework" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T00:47:53+01:00","datePublished":"2025-01-30T00:47:53+01:00","description":"In the previous post we got to know the IMML and its application in the DSPN study. In this post I would like to go more into details of the algorithm, how it is constructed, what it actually does underneath and how it helps in studying complex deseases. This is more of a discription of the algorithm, rather than a coding tutorial. For a full on tutorial of how to actually use IMML, please visit my github repository.","headline":"The Interpretable Multimodal Machine Learning (IMML) framework","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/projects/2.imml/"},"url":"http://localhost:4001/projects/2.imml/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background: rgba(64,64,64,0.8);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        color: white;
+        font-size: 2vw;
+      }
+      .tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0.8vw;
+        background: rgba(43, 43, 43, 1); /* Coffee color with reduced opacity */
+        font-size: 3vw;
+        position: fixed;
+      }
+      .tabs a {
+        color: #F7CE46;
+        text-decoration: none;
+        margin: 0 10px;
+        padding: 10px;
+        background: none;
+        border-radius: 1vw;
+        font-size: 1.3vw;
+      }
+      .tabs a.current {
+        background: #F7CE46; /* Different color for the current page */
+        color: rgba(43, 43, 43, 1);
+        border-radius: 1vw;
+        font-size: 1.5vw;
+      }
+      .menu-button {
+        display: none; /* Hide by default */
+      }
+      .toc-button {
+        display: none; /* Hide by default */
+      }
+      .container {
+        display: flex;
+        flex: 1;
+      }
+      .left-bar {
+        background: rgba(51, 51, 51, 0.9); /* Coffee color with reduced opacity */
+        width: 16vw;
+        padding: 0.5vw;
+        position: fixed;
+        top: 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2.5vw;
+      }
+      .left-bar img {
+        border-radius: 50%;
+        width: 10vw;
+        height: 10vw;
+        object-fit: cover;
+        margin-bottom: 0.5vw;
+        margin-left: 0.8vw;
+      }
+      .left-bar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .left-bar ul li {
+        margin: 0.3vw 0.3vw;
+      }
+      .left-bar ul li a {
+        color: rgb(221,221,221);
+        text-decoration: none;
+        font-size: 1.2vw;
+      }
+      .content {
+        flex: 1;
+        padding: 40px;
+        background: rgba(64,64,64,0.8); /* Different color for the content area */
+        color: rgb(221,221,221);
+        font-size: 1vw;
+        margin-left: 230px;
+        margin-top: 40px;
+      }
+      .content a {
+        color: #F7CE46; /* Change hyperlink color */
+      }
+      .bash-command {
+          font-family: monospace;
+          background: #272727;
+          color: rgb(221,221,221);
+          padding: 0px;
+          margin: 0px;
+          border-radius: 5px;
+          overflow-x: auto;
+          white-space: pre;
+          font-size: 1vw;
+          display: block;
+          width: 1100px;
+      }
+      pre[class*="language-"] {
+        background: #272727;
+        padding: 0px;
+        margin: 0px;
+        border-radius: 5px;
+        overflow-x: auto;
+        display: block;
+        width: 1100px;
+      }
+      /* Custom styles for headers */
+      h1, h2, h3, h4, h5, h6 {
+        color: #F7CE46; /* Change header color */
+        background-color: rgba(43, 43, 43, 0.8); /* Highlight background color */
+        padding: 5px; /* Add padding */
+        border-radius: 5px; /* Add border radius */
+      }
+      .thumbnail {
+        width: 15%;
+        float: left;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        height: auto;
+      }
+      .project-item {
+        clear: both;
+        margin-bottom: 30px;
+      }
+      @media (max-aspect-ratio: 1/1) {
+        body {
+          font-size: 2vw; /* Adjust font size for smaller screens */
+        }
+        .tabs {
+          justify-content: space-between;
+          padding: 0px;
+          font-size: 8px; /* Adjust font size for smaller screens */
+        }
+        .tabs a {
+          display: none; /* Hide tabs on phone screens */
+        }
+        .tabs a.current {
+          font-size: 4vw;
+        }
+        .menu-button {
+          display: block; /* Show menu button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 5px;
+          font-size: 4vw;
+          cursor: pointer;
+          position: fixed;
+          border-radius: 5px;
+          top: 8px;
+          right: 10px;
+        }
+        .menu-content {
+          display: none;
+          position: absolute;
+          top: 40px;
+          right: 20px;
+          background: rgba(43, 43, 43, 1);
+          padding: 5px;
+          border-radius: 5px;
+          z-index: 1001;
+        }
+        .menu-content a {
+          display: block;
+          color: #F7CE46;
+          text-decoration: none;
+          margin: 5px 0;
+          padding: 5px;
+          font-size: 4vw;
+        }
+        .left-bar {
+          width: 80px; /* Adjust width for smaller screens */
+          padding: 4px;
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          top: 7px;
+          border-radius: 3px;
+        }
+        .left-bar img {
+          width: 60px; /* Smaller image for smaller screens */
+          height: 60px;
+          margin-bottom: 2px;
+          margin-left: 5px;
+        }
+        .left-bar ul li {
+          margin: 5px 0px;
+        }
+        .left-bar ul li a {
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          padding: 2px;
+          margin-top: 2px;
+        }
+        .toc-button {
+          display: block; /* Show table of content button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 3px 3px;
+          font-size: 2vw;
+          cursor: pointer;
+          border-radius: 3px;
+          margin-top: 3px;
+        }
+        .toc-content {
+          display: none;
+          background: rgba(51, 51, 51, 0.9);
+          color: #F7CE46;
+          padding: 8px;
+          border-radius: 5px;
+          margin-left: 5px;
+          width: 100%;
+          font-size: 2vw;
+        }
+        .toc-content a {
+          display: block;
+          text-decoration: none;
+          margin: 5px 5px;
+          padding: 5px;
+          font-size: 2vw;
+        }
+        .content {
+          padding: 15px;
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          margin-top: 0px;
+          margin-left: 75px;
+        }
+        .bash-command {
+          font-family: monospace;
+          background: #272727;
+          color: rgb(221,221,221);
+          padding: 0px;
+          border-radius: 5px;
+          overflow-x: auto;
+          white-space: pre;
+          font-size: 8px;
+          display: block;
+          width: 330px;
+          margin: 0px;
+        }
+        .thumbnail {
+          width: 50%;
+        }
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-perl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-r.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="tabs">
+      <button class="menu-button" onclick="toggleMenu()">Menu</button>
+      <div class="menu-content" id="menu-content">
+        <nav>
+  
+    <a href="/">Home</a>
+  
+    <a href="/about.html">About me</a>
+  
+    <a href="/projects.html">Projects/ tools development</a>
+  
+    <a href="/data_viz.html">Data visualization</a>
+  
+    <a href="/blog.html">Blog</a>
+  
+</nav>
+      </div>
+    </div>
+    <div class="container">
+      <div class="left-bar">
+        <img src="/assets/images/page_img.jpg" alt="Profile Picture">
+        <button class="toc-button" onclick="toggleToc()">Table of Content</button>
+        <div class="toc-content" id="toc-content">
+          <ul>
+            
+              <li><a href="#chapter1">Introduction</a></li>
+            
+              <li><a href="#chapter2">Components of IMML</a></li>
+            
+              <li><a href="#chapter3">Data partitioning</a></li>
+            
+              <li><a href="#chapter 4">Feature selection</a></li>
+            
+              <li><a href="#chapter 5">Model training</a></li>
+            
+              <li><a href="#chapter 6">Takehome massage</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <p><a id="chapter1"></a>
+In the <a href="../projects/1.imml_dspn">previous post</a> we got to know the IMML and its application in the DSPN study. In this post I would like to go more into details of the algorithm, how it is constructed, what it actually does underneath and how it helps in studying complex deseases. This is more of a discription of the algorithm, rather than a coding tutorial. For a full on tutorial of how to actually use IMML, please visit my <a href="https://github.com/phngbh/IMML">github repository</a>.</p>
+
+<h2 id="components-of-imml">Components of IMML</h2>
+<p><a id="chapter2"></a></p>
+
+<p>IMML is an end-to-end machine learning framework for prediction of complex diseases’ phenotypes and discovery of biomarkers by integrating multimodal datasets. To overcome the technical challenges of analyzing vast and heterogenous biomedical datasets, IMML implements a multistep approach from data preparation to feature selection and integration. Specifically, IMML framework consists of four consecutive components: data partitioning, feature selection, model training and feature analysis. The four components resembles a standard machine learning workflow, but were customised to addess the aforementioned challenges and maximize performance and interpretability. <strong>Figure 1</strong> gives an overview of the framework including the components and their input/output. Subsequent chapters will dive into details of these components.</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/imml_fig1.png" alt="Figure 1" style="max-width: 40%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 1. Overview of the IMML framework and its components.</strong></p> 
+</div>
+
+<h2 id="data-partitioning">Data partitioning</h2>
+<p><a id="chapter3"></a></p>
+
+<p>The first step in the framework is data partitioning, which was derived to overcome the issue of missing data and prepare the input for subsequent feature selection and model training. Missing data is a quite common problem in biomedical datasets, as not all patients were characterized with the same procedure and data originates from various sources, leading to an uneven distribution of features among individuals. An example in <strong>Figure 2</strong> shows that combinations of data modalities from the same dataset have varying sample sizes.</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/imml_fig2.png" alt="Figure 2" style="max-width: 60%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 2. Example of a dataset with uneven distribution of samples in different data modalities.</strong></p> 
+</div>
+
+<p>To maximize the utility of data, I split the dataset into two parts. The subset of samples that are fully characterized, ie. having all features, is set aside for model training later on. For the rest of the samples, samples that are fully characterized for each data modality are put into separate subsets for feature selection. The feature selection process is done separately for each modality and utilize the corresponding subsets. An example is shown in <strong>Figure 3</strong>, where the data is split into one model training set and several feature selection sets. Using this approach, we tackle the issue of uneven feature distribution and improve the robustness of feature selection and model training.</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/imml_fig3.png" alt="Figure 3" style="max-width: 60%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 3. Example of the data partitioning output.</strong> Blue bars show positive (case) samples and green bars are negative (control) samples.</p> 
+</div>
+
+<h2 id="feature-selection">Feature selection</h2>
+<p><a id="chapter4"></a></p>
+
+<p>One of the advances of IMML lies in the feature selection process. This step aims to shrink the vast and heterogenous feature space of the analyzed dataset into an ML-manageable and interpretable space. To this end, I leverage <a href="https://www.pnas.org/doi/10.1073/pnas.0506580102">gene set enrichment analysis (GSEA)</a> to select the features that are both predictive for the phenotype and biologically relevant to incorporate into the model. Particularly for each molecular modality, GSEA is performed to identify the significantly enriched signaling pathways associated with the phenotype and the specific set of features that drive the enrichment of these pathways (leading edge features). Please refer to the GSEA publication for details of the algorithm and how to identify leading egde features. In short, GSEA starts with a ranked feature list (ranked from the most up-regulated to the most down-regulated in association with the phenotype) and statistically evaluates whether a predefined feature set (corresponding to a signaling pathway) significantly locates toward the top (up-regulated) or bottom (down-regulated) of the feature list, through hypothesis testing of an enrichment distribution against a null distribution of data generated by permutation. Here the GSEA is conducted separately for each data modality using the previously prepared feature selection sets and the selected leading edge features are combined at the end to train the model in the subsequent model training step. <strong>Figure 4</strong> gives an overview of input and output of the feature selection. Altogether, this approach ensures that the originally heterogenous feature space is projected to a smaller common biological space to boost predictablity and interpretability.</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/imml_fig4.png" alt="Figure 4" style="max-width: 55%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 4. Feature selection procedure of IMML</strong> Each modality is selected separately through GSEA and the leading edge features are combined together at the end.</p> 
+</div>
+
+<h2 id="model-training">Model training</h2>
+<p><a id="chapter5"></a></p>
+
+<p>In this final step IMML leverages the fully characterized samples the I set aside in the data partitioning step together with the leading edge features selected in the feature selection step to make up a dataset for training. To this end IMML makes 100 stratified splits, each of which allocates 80% of the data for feature integration and training, with 20% reserved for testing. The training data was further divided into stratified 5-fold cross-validation sets. Cross-validation results guided the iterative forward feature selection (FFS) algorithm, which incrementally integrates multiple data modalities by evaluating performance of modality combinations over the 5-fold cross-validation. The FFS starts with a single modality and selects more modalities to add to the model through cross-validation until all features are included. To assist interpretability, by default IMML uses elastic net as the training algorithm, but in theory one can choose between algorithms such as Random Forest, Support Vector Machine and XGBoost. IMML also has many flavors of performance metrics, including AUROC, AUPRC and Weighted Log Loss. The choice depends on data situations. After training IMML aggregates important features (based on the t-statistics of the linear models’ parameters) from the 100 runs using Robust Rank Aggregation (RRA). These features were used to train a final elastic net model on the entire training dataset, with feature importance evaluated through t-statistics of the model parameters. <strong>Figure 5</strong> gives an overview of the model training and important feature extraction. In summary, the model training process the final step to integrate multimodal features, make prediction and evaluate biomakers of the phenotype.</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/imml_fig5.png" alt="Figure 5" style="max-width: 55%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 5. Model training and important feature extraction</strong></p> 
+</div>
+
+<h2 id="take-home-message">Take home message</h2>
+<p><a id="chapter6"></a></p>
+
+<ul>
+  <li>
+    <p>IMML is an end-to-end machine learning framework to make prediction and discover biomarkers of complex diseases, utilising GSEA and robust model training algorithm</p>
+  </li>
+  <li>
+    <p>Full instruction how to install and use the tool can be found in the <a href="https://github.com/phngbh/IMML">github repository</a>. Also refer to the <a href="https://www.nature.com/articles/s43856-024-00637-1">paper</a> for detailed description of the algorithm and its application.</p>
+  </li>
+</ul>
+
+      </div>
+    </div>
+    <script>
+      function toggleMenu() {
+        var menuContent = document.getElementById('menu-content');
+        if (menuContent.style.display === 'block') {
+          menuContent.style.display = 'none';
+        } else {
+          menuContent.style.display = 'block';
+        }
+      }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('menu-content');
+        var menuButton = document.querySelector('.menu-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
+      function toggleToc() {
+        var tocContent = document.getElementById('toc-content');
+        if (tocContent.style.display === 'block') {
+          tocContent.style.display = 'none';
+        } else {
+          tocContent.style.display = 'block';
+        }
+      }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('toc-content');
+        var menuButton = document.querySelector('.toc-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

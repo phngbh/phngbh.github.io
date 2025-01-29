@@ -2,11 +2,9 @@
   link: /
 - name: About me
   link: /about.html
-- name: Projects/ tools developemt
+- name: Projects/ tools development
   link: /projects.html
 - name: Data visualization
   link: /data_viz.html
 - name: Blog
   link: /blog.html
-- name: Personal space
-  link: /random.html

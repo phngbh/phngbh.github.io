@@ -1,0 +1,521 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizing the association between categories or the dynamics of variables over time using alluvial plot</title>
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Visualizing the association between categories or the dynamics of variables over time using alluvial plot</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Visualizing the association between categories or the dynamics of variables over time using alluvial plot" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Alluvial plot is versatile and useful in many situations. It can be used to describe the associations between the categories of two or three factor variables. In many cases alluvial plot can also visualize the flow or changes of one or more variables over time or different conditions. In this post I will demeonstrate the utility of alluvial plot in the latter case. Specifically, I will visualize the changes in data modality that a model uses across several training iterations, in the case of IMML model training." />
+<meta property="og:description" content="Alluvial plot is versatile and useful in many situations. It can be used to describe the associations between the categories of two or three factor variables. In many cases alluvial plot can also visualize the flow or changes of one or more variables over time or different conditions. In this post I will demeonstrate the utility of alluvial plot in the latter case. Specifically, I will visualize the changes in data modality that a model uses across several training iterations, in the case of IMML model training." />
+<link rel="canonical" href="http://localhost:4001/data_viz/alluvial/" />
+<meta property="og:url" content="http://localhost:4001/data_viz/alluvial/" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-30T00:47:53+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Visualizing the association between categories or the dynamics of variables over time using alluvial plot" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T00:47:53+01:00","datePublished":"2025-01-30T00:47:53+01:00","description":"Alluvial plot is versatile and useful in many situations. It can be used to describe the associations between the categories of two or three factor variables. In many cases alluvial plot can also visualize the flow or changes of one or more variables over time or different conditions. In this post I will demeonstrate the utility of alluvial plot in the latter case. Specifically, I will visualize the changes in data modality that a model uses across several training iterations, in the case of IMML model training.","headline":"Visualizing the association between categories or the dynamics of variables over time using alluvial plot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/data_viz/alluvial/"},"url":"http://localhost:4001/data_viz/alluvial/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background: rgba(64,64,64,0.8);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        color: white;
+        font-size: 2vw;
+      }
+      .tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0.8vw;
+        background: rgba(43, 43, 43, 1); /* Coffee color with reduced opacity */
+        font-size: 3vw;
+        position: fixed;
+      }
+      .tabs a {
+        color: #F7CE46;
+        text-decoration: none;
+        margin: 0 10px;
+        padding: 10px;
+        background: none;
+        border-radius: 1vw;
+        font-size: 1.3vw;
+      }
+      .tabs a.current {
+        background: #F7CE46; /* Different color for the current page */
+        color: rgba(43, 43, 43, 1);
+        border-radius: 1vw;
+        font-size: 1.5vw;
+      }
+      .menu-button {
+        display: none; /* Hide by default */
+      }
+      .toc-button {
+        display: none; /* Hide by default */
+      }
+      .container {
+        display: flex;
+        flex: 1;
+      }
+      .left-bar {
+        background: rgba(51, 51, 51, 0.9); /* Coffee color with reduced opacity */
+        width: 16vw;
+        padding: 0.5vw;
+        position: fixed;
+        top: 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2.5vw;
+      }
+      .left-bar img {
+        border-radius: 50%;
+        width: 10vw;
+        height: 10vw;
+        object-fit: cover;
+        margin-bottom: 0.5vw;
+        margin-left: 0.8vw;
+      }
+      .left-bar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .left-bar ul li {
+        margin: 0.3vw 0.3vw;
+      }
+      .left-bar ul li a {
+        color: rgb(221,221,221);
+        text-decoration: none;
+        font-size: 1.2vw;
+      }
+      .content {
+        flex: 1;
+        padding: 40px;
+        background: rgba(64,64,64,0.8); /* Different color for the content area */
+        color: rgb(221,221,221);
+        font-size: 1vw;
+        margin-left: 230px;
+        margin-top: 40px;
+      }
+      .content a {
+        color: #F7CE46; /* Change hyperlink color */
+      }
+      .bash-command {
+          font-family: monospace;
+          background: #272727;
+          color: rgb(221,221,221);
+          padding: 0px;
+          margin: 0px;
+          border-radius: 5px;
+          overflow-x: auto;
+          white-space: pre;
+          font-size: 1vw;
+          display: block;
+          width: 1100px;
+      }
+      pre[class*="language-"] {
+        background: #272727;
+        padding: 0px;
+        margin: 0px;
+        border-radius: 5px;
+        overflow-x: auto;
+        display: block;
+        width: 1100px;
+      }
+      /* Custom styles for headers */
+      h1, h2, h3, h4, h5, h6 {
+        color: #F7CE46; /* Change header color */
+        background-color: rgba(43, 43, 43, 0.8); /* Highlight background color */
+        padding: 5px; /* Add padding */
+        border-radius: 5px; /* Add border radius */
+      }
+      .thumbnail {
+        width: 15%;
+        float: left;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        height: auto;
+      }
+      .project-item {
+        clear: both;
+        margin-bottom: 30px;
+      }
+      @media (max-aspect-ratio: 1/1) {
+        body {
+          font-size: 2vw; /* Adjust font size for smaller screens */
+        }
+        .tabs {
+          justify-content: space-between;
+          padding: 0px;
+          font-size: 8px; /* Adjust font size for smaller screens */
+        }
+        .tabs a {
+          display: none; /* Hide tabs on phone screens */
+        }
+        .tabs a.current {
+          font-size: 4vw;
+        }
+        .menu-button {
+          display: block; /* Show menu button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 5px;
+          font-size: 4vw;
+          cursor: pointer;
+          position: fixed;
+          border-radius: 5px;
+          top: 8px;
+          right: 10px;
+        }
+        .menu-content {
+          display: none;
+          position: absolute;
+          top: 40px;
+          right: 20px;
+          background: rgba(43, 43, 43, 1);
+          padding: 5px;
+          border-radius: 5px;
+          z-index: 1001;
+        }
+        .menu-content a {
+          display: block;
+          color: #F7CE46;
+          text-decoration: none;
+          margin: 5px 0;
+          padding: 5px;
+          font-size: 4vw;
+        }
+        .left-bar {
+          width: 80px; /* Adjust width for smaller screens */
+          padding: 4px;
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          top: 7px;
+          border-radius: 3px;
+        }
+        .left-bar img {
+          width: 60px; /* Smaller image for smaller screens */
+          height: 60px;
+          margin-bottom: 2px;
+          margin-left: 5px;
+        }
+        .left-bar ul li {
+          margin: 5px 0px;
+        }
+        .left-bar ul li a {
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          padding: 2px;
+          margin-top: 2px;
+        }
+        .toc-button {
+          display: block; /* Show table of content button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 3px 3px;
+          font-size: 2vw;
+          cursor: pointer;
+          border-radius: 3px;
+          margin-top: 3px;
+        }
+        .toc-content {
+          display: none;
+          background: rgba(51, 51, 51, 0.9);
+          color: #F7CE46;
+          padding: 8px;
+          border-radius: 5px;
+          margin-left: 5px;
+          width: 100%;
+          font-size: 2vw;
+        }
+        .toc-content a {
+          display: block;
+          text-decoration: none;
+          margin: 5px 5px;
+          padding: 5px;
+          font-size: 2vw;
+        }
+        .content {
+          padding: 15px;
+          font-size: 2vw; /* Adjust font size for smaller screens */
+          margin-top: 0px;
+          margin-left: 75px;
+        }
+        .bash-command {
+          font-family: monospace;
+          background: #272727;
+          color: rgb(221,221,221);
+          padding: 0px;
+          border-radius: 5px;
+          overflow-x: auto;
+          white-space: pre;
+          font-size: 8px;
+          display: block;
+          width: 330px;
+          margin: 0px;
+        }
+        .thumbnail {
+          width: 50%;
+        }
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-perl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-r.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="tabs">
+      <button class="menu-button" onclick="toggleMenu()">Menu</button>
+      <div class="menu-content" id="menu-content">
+        <nav>
+  
+    <a href="/">Home</a>
+  
+    <a href="/about.html">About me</a>
+  
+    <a href="/projects.html">Projects/ tools development</a>
+  
+    <a href="/data_viz.html">Data visualization</a>
+  
+    <a href="/blog.html">Blog</a>
+  
+</nav>
+      </div>
+    </div>
+    <div class="container">
+      <div class="left-bar">
+        <img src="/assets/images/page_img.jpg" alt="Profile Picture">
+        <button class="toc-button" onclick="toggleToc()">Table of Content</button>
+        <div class="toc-content" id="toc-content">
+          <ul>
+            
+              <li><a href="#chapter1">Introduction</a></li>
+            
+              <li><a href="#chapter2">Alluvial plot</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <p><a id="chapter1"></a>
+Alluvial plot is versatile and useful in many situations. It can be used to describe the associations between the categories of two or three factor variables. In many cases alluvial plot can also visualize the flow or changes of one or more variables over time or different conditions. In this post I will demeonstrate the utility of alluvial plot in the latter case. Specifically, I will visualize the changes in data modality that a model uses across several training iterations, in the case of <a href="/projects/2.imml">IMML</a> model training.</p>
+
+<p>First we need to load necessary R libraries.</p>
+<div class="bash-command">
+    <pre><code class="language-R">
+        library(dplyr)
+        library(ggplot2)
+        library(ggalluvial)
+        library(RColorBrewer)
+    </code></pre>
+</div>
+
+<p>In the case of my project, the input for the plot looks like this, which contains useful information that I got after the model training. The dataframe is saved as <code class="language-plaintext highlighter-rouge">perf_roc</code> in the environment.</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/alluvial_fig1.png" alt="Figure 1" style="max-width: 70%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Model training information of IMML.</strong></p> 
+</div>
+
+<ul>
+  <li>Complexity: Increasing number of modalities used in each training iteration, from 1 to 6.</li>
+  <li>Model: The actual modalities selected in the corresponding iteration</li>
+  <li>Type, Value: The performance metric used and the model performance, respectively</li>
+  <li>Sample: Either ‘Train’ or ‘Test’</li>
+</ul>
+
+<h2 id="alluvial-plot">Alluvial plot</h2>
+<p><a id="chapter2"></a></p>
+
+<p>First I processed the dataframe into a format suitable for plotting. Here’s how:</p>
+
+<div class="bash-command">
+    <pre><code class="language-R">
+        # Add information of iterations and omics components
+        perf &lt;- perf_roc %&gt;%
+            mutate(Iteration = rep(1:100, each = 6),
+                    Genomics = vector(mode = "numeric", length = nrow(perf_roc)),
+                    Transcriptomics = vector(mode = "numeric", length = nrow(perf_roc)),
+                    Proteomics = vector(mode = "numeric", length = nrow(perf_roc)),
+                    Metabolomics = vector(mode = "numeric", length = nrow(perf_roc)),
+                    Olink = vector(mode = "numeric", length = nrow(perf_roc)),
+                    Clinical = vector(mode = "numeric", length = nrow(perf_roc)))
+
+        # Label the omics components if they present in the model
+        for (i in 1:nrow(perf)){
+            perf$Genomics[i] &lt;- ifelse(length(grep("Genomics",perf$Model[i])) &gt; 0, 1, 0)
+            perf$Transcriptomics[i] &lt;- ifelse(length(grep("Transcriptomics",perf$Model[i])) &gt; 0, 1, 0)
+            perf$Proteomics[i] &lt;- ifelse(length(grep("Proteomics",perf$Model[i])) &gt; 0, 1, 0)
+            perf$Metabolomics[i] &lt;- ifelse(length(grep("Metabolomics",perf$Model[i])) &gt; 0, 1, 0)
+            perf$Olink[i] &lt;- ifelse(length(grep("Olink",perf$Model[i])) &gt; 0, 1, 0)
+            perf$Clinical[i] &lt;- ifelse(length(grep("Clinical",perf$Model[i])) &gt; 0, 1, 0)
+        }
+
+        # Transform into a long table
+        perf &lt;- pivot_longer(perf, cols = Genomics:Clinical, names_to = "Data", values_to = "Comb") %&gt;% 
+            filter(Comb == 1)
+        
+        # Trim off unnecessary rows in the dataframe
+        df_list &lt;- list()
+        for (i in 1:100){
+            tmp &lt;- filter(perf, Iteration == i)
+            df_list[[i]] = list()
+            for (j in 1:6){
+                if (j == 1){
+                    df &lt;- filter(tmp, Complexity == "1-Modality" &amp; Iteration == i)
+                    df_list[[i]][[j]] &lt;- df
+                } else {
+                    comp &lt;- paste0(j,"-Modality")
+                    comp0 &lt;- paste0(j-1,"-Modality")
+                    mod &lt;- filter(tmp, Complexity == comp)$Data %&gt;% as.character()
+                    mod0 &lt;- filter(tmp, Complexity == comp0)$Data %&gt;% as.character()
+                    mol &lt;- setdiff(mod,mod0)
+                    df &lt;- filter(tmp, Complexity == comp &amp; Data == mol)
+                    df_list[[i]][[j]] &lt;- df
+                }
+            }
+            df_list[[i]] &lt;- do.call(rbind, df_list[[i]])
+        }
+        perf_fil &lt;- do.call(rbind, df_list) %&gt;% arrange(Iteration, Complexity)
+        perf_fil$Data &lt;- factor(perf_fil$Data, levels = c("Genomics",
+                                                        "Transcriptomics",
+                                                        "Proteomics",
+                                                        "Metabolomics",
+                                                        "Olink",
+                                                        "Clinical"))
+    </code></pre>
+</div>
+
+<p>The final table <code class="language-plaintext highlighter-rouge">perf_fil</code> would look like this, where the <code class="language-plaintext highlighter-rouge">Data</code> column shows the new modality that was added to the model in the corresponding iteration.</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/alluvial_fig2.png" alt="Figure 2" style="max-width: 70%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Post processed table of model training information.</strong></p> 
+</div>
+
+<p>Then I simply made the plot:</p>
+
+<div class="bash-command">
+    <pre><code class="language-R">
+        ggplot(perf_fil, 
+                aes(x = Complexity, stratum = Data, alluvium = Iteration, fill = Data, label = Data)) + 
+        scale_fill_manual(values = color_types) + 
+        geom_flow(stat = "alluvium", lode.guidance = "frontback") +
+        geom_stratum(color = NA) +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+                panel.background = element_rect(fill = "white",
+                                        colour = "white",
+                                        size = 0.5, linetype = "solid"),
+                panel.grid.major = element_line(size = 0.25, linetype = 'solid',
+                                        colour = "grey"), 
+                panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                        colour = "grey")) 
+    </code></pre>
+</div>
+
+<p>The result looks like this:</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/alluvial_fig3.png" alt="Figure 3" style="max-width: 70%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Modality trajectory of model training</strong></p> 
+</div>
+
+<p>The plot shows the model complexity on the x-axis and and each alluvium (wavy line) represent one training iteration with its color represents the modality.</p>
+
+<p>We could go one step further and plot the prediction performance as a boxplot on top of the alluvial plot to show more information.</p>
+
+<div class="bash-command">
+    <pre><code class="language-R">
+        a &lt;- ggplot(sel_inc3_roc, aes(x = Complexity, y = Value)) + 
+            geom_boxplot(fill = "deepskyblue4", outlier.shape = NA) + 
+            geom_point(alpha = 0.5) +
+            theme(text = element_text(size = 18),
+                    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),  
+                    legend.position = "none", axis.title.x = element_blank(),
+                    panel.background = element_rect(fill = "white",
+                                            colour = "white",
+                                            size = 0.5, linetype = "solid"),
+                    panel.grid.major = element_line(size = 0.25, linetype = 'solid',
+                                            colour = "grey"), 
+                    panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                            colour = "grey")) +
+            ylab("AUROC") +
+            stat_compare_means(comparisons = list( c("1-Modality", "3-Modality")),method = "wilcox.test")
+        b &lt;- ggplot(perf_fil, 
+                aes(x = Complexity, stratum = Data, alluvium = Iteration, fill = Data, label = Data)) + 
+            scale_fill_manual(values = color_types) + 
+            geom_flow(stat = "alluvium", lode.guidance = "frontback") +
+            geom_stratum(color = NA) +
+            theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+                    panel.background = element_rect(fill = "white",
+                                            colour = "white",
+                                            size = 0.5, linetype = "solid"),
+                    panel.grid.major = element_line(size = 0.25, linetype = 'solid',
+                                            colour = "grey"), 
+                    panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                            colour = "grey")) 
+        egg::ggarrange(a,b, nrow = 2, heights = c(1,1))
+    </code></pre>
+</div>
+
+<p>The final plot would look like this:</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/alluvial_fig4.png" alt="Figure 4" style="max-width: 70%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Trajectory of the model complexity and their prediction performance.</strong></p> 
+</div>
+
+      </div>
+    </div>
+    <script>
+      function toggleMenu() {
+        var menuContent = document.getElementById('menu-content');
+        if (menuContent.style.display === 'block') {
+          menuContent.style.display = 'none';
+        } else {
+          menuContent.style.display = 'block';
+        }
+      }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('menu-content');
+        var menuButton = document.querySelector('.menu-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
+      function toggleToc() {
+        var tocContent = document.getElementById('toc-content');
+        if (tocContent.style.display === 'block') {
+          tocContent.style.display = 'none';
+        } else {
+          tocContent.style.display = 'block';
+        }
+      }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('toc-content');
+        var menuButton = document.querySelector('.toc-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
