@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prognosis of type 2 diabetes leveraging pretrained large language model for longitudinal medical records</title>
+    <meta name="description" content="Phong BH. Nguyen's personal page - Scientist, programmer, adventurer. Learn about my research, projects, and interests.">
+    <meta name="keywords" content="Phong BH. Nguyen, bioinformatics, data science, machine learning, health informatics, non-communicable diseases, diabetes, cancer, cardiovascular diseases">
+    <meta name="author" content="Phong BH. Nguyen">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Prognosis of type 2 diabetes leveraging pretrained large language model for longitudinal medical records</title>
@@ -15,11 +18,11 @@
 <link rel="canonical" href="http://localhost:4001/projects/3.dpv/" />
 <meta property="og:url" content="http://localhost:4001/projects/3.dpv/" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-01-30T01:10:34+01:00" />
+<meta property="article:published_time" content="2025-01-30T11:36:12+01:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Prognosis of type 2 diabetes leveraging pretrained large language model for longitudinal medical records" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T01:10:34+01:00","datePublished":"2025-01-30T01:10:34+01:00","description":"Type 2 diabetes (T2D) is a chronic metabolic disorder characterized by elevated blood glucose levels and is linked to severe microvascular and macrovascular complications such as cardiovascular diseases, neuropathy, nephropathy, and retinopathy, which significantly contribute to global morbidity and mortality. With T2D prevalence rising worldwide, effective management and early prognosis of its complications are essential for reducing healthcare costs and improving patient outcomes. This project aims to assist T2D leveraging availablity of large medical datasets and advancements in AI-driven large language models.","headline":"Prognosis of type 2 diabetes leveraging pretrained large language model for longitudinal medical records","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/projects/3.dpv/"},"url":"http://localhost:4001/projects/3.dpv/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T11:36:12+01:00","datePublished":"2025-01-30T11:36:12+01:00","description":"Type 2 diabetes (T2D) is a chronic metabolic disorder characterized by elevated blood glucose levels and is linked to severe microvascular and macrovascular complications such as cardiovascular diseases, neuropathy, nephropathy, and retinopathy, which significantly contribute to global morbidity and mortality. With T2D prevalence rising worldwide, effective management and early prognosis of its complications are essential for reducing healthcare costs and improving patient outcomes. This project aims to assist T2D leveraging availablity of large medical datasets and advancements in AI-driven large language models.","headline":"Prognosis of type 2 diabetes leveraging pretrained large language model for longitudinal medical records","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/projects/3.dpv/"},"url":"http://localhost:4001/projects/3.dpv/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
@@ -103,12 +106,13 @@
       }
       .content {
         flex: 1;
-        padding: 40px;
+        padding: 2vw;
         background: rgba(64,64,64,0.8); /* Different color for the content area */
         color: rgb(221,221,221);
         font-size: 1vw;
         margin-left: 230px;
         margin-top: 40px;
+        text-align: justify;
       }
       .content a {
         color: #F7CE46; /* Change hyperlink color */
@@ -200,15 +204,15 @@
           font-size: 4vw;
         }
         .left-bar {
-          width: 80px; /* Adjust width for smaller screens */
+          width: 16%; /* Adjust width for smaller screens */
           padding: 4px;
           font-size: 2vw; /* Adjust font size for smaller screens */
           top: 7px;
           border-radius: 3px;
         }
         .left-bar img {
-          width: 60px; /* Smaller image for smaller screens */
-          height: 60px;
+          width: 8vw; /* Smaller image for smaller screens */
+          height: 8vw;
           margin-bottom: 2px;
           margin-left: 5px;
         }
@@ -239,20 +243,20 @@
           border-radius: 5px;
           margin-left: 5px;
           width: 100%;
-          font-size: 2vw;
+          font-size: 3vw;
         }
         .toc-content a {
           display: block;
           text-decoration: none;
           margin: 5px 5px;
           padding: 5px;
-          font-size: 2vw;
+          font-size: 3vw;
         }
         .content {
-          padding: 15px;
+          padding: 3vw;
           font-size: 3vw; /* Adjust font size for smaller screens */
           margin-top: 0px;
-          margin-left: 75px;
+          margin-left: 15vw;
         }
         .bash-command {
           font-family: monospace;
@@ -330,24 +334,24 @@ Type 2 diabetes (T2D) is a chronic metabolic disorder characterized by elevated 
 
 <p>This study explored the application of foundation models in T2D prognosis by adapting sparse, structured data for input into a pretrained LLM, incorporating a learnable embedding layer for minimal preprocessing. The approach also supports model interpretability, offering valuable insights for personalized healthcare decision-making and highlighting the model’s capability to handle the complexities inherent in longitudinal medical data.</p>
 
-<h2 id="the-dataset">The dataset</h2>
+<h3 id="the-dataset">The dataset</h3>
 <p><a id="chapter2"></a></p>
 
 <p>This study analyzed data from the <a href="https://buster.zibmt.uni-ulm.de/">German Diabetes Prospective Follow-up Registry (DPV) Initiative</a>, which includes 649,331 electronic health records from over 400 facilities across four European countries. The focus was on 449,185 T2D patients, of which I selected 50,183 individuals with at least 10 clinical visits for sufficient historical data. In this study I used HbA1c and LDL as target variables to demonstrate the model performance. After preprocessing, the final datasets included 36,733 samples for HbA1c prediction and 15,139 for LDL prediction, both showing roughly normal distributions (<strong>Figure 1</strong>).</p>
 
 <div style="text-align: center;">
-  <img src="/assets/images/dpv_fig1.png" alt="Figure 1" style="max-width: 55%; height: auto;" />
+  <img src="/assets/images/dpv_fig1.png" alt="Figure 1" style="max-width: 70%; height: auto;" />
   <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 1. Overview of the dataseet.</strong></p> 
 </div>
 
 <p>Patient timelines spanned 10 to 50 visits, with up to 321 features per visit (e.g., diagnoses, demographics, and treatments) included in the feature window, though not all were consistently recorded. The prediction window defined the forecasting horizon, with mean record lengths of 2,651 days for HbA1c and 2,661 days for LDL samples (<strong>Figure 2</strong>).</p>
 
 <div style="text-align: center;">
-  <img src="/assets/images/dpv_fig2.png" alt="Figure 2" style="max-width: 55%; height: auto;" />
+  <img src="/assets/images/dpv_fig2.png" alt="Figure 2" style="max-width: 70%; height: auto;" />
   <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 2. Example of a patient's timeline and definitions of feature window and prediction window.</strong></p> 
 </div>
 
-<h2 id="the-llm-adaptation-approach">The LLM adaptation approach</h2>
+<h3 id="the-llm-adaptation-approach">The LLM adaptation approach</h3>
 <p><a id="chapter3"></a></p>
 
 <p>This machine learning framework was developed to process sparse medical time series data and adapt it for use with pretrained large language models (LLMs), leveraging their advanced predictive capabilities in the medical field. It addresses the critical challenges of missing data, high dimensionality and domain incompatibility, by transforming medical datasets into a format suitable for analysis by LLMs (<strong>Figure 3</strong>).</p>
@@ -357,21 +361,21 @@ Type 2 diabetes (T2D) is a chronic metabolic disorder characterized by elevated 
 <p>After preprocessing, the data is passed through an embedding layer designed to reshape its dimensionality while preserving essential features. This step is crucial for ensuring that the data is compatible with the pretrained LLM, which operates on structured input to generate predictions. These models, trained on vast textual datasets, would be adapted to interpret structured medical data and predict health outcomes based on the longitudinal records provided. This approach exhibits minimal data processing and requires no prompt engineering to finetune the pretrained LLM.</p>
 
 <div style="text-align: center;">
-  <img src="/assets/images/dpv_fig3.png" alt="Figure 3" style="max-width: 55%; height: auto;" />
+  <img src="/assets/images/dpv_fig3.png" alt="Figure 3" style="max-width: 70%; height: auto;" />
   <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 3. The machine learning framework for adapting sparse medical time series to pretrained large language models.</strong></p> 
 </div>
 
-<h2 id="our-approach-excels-in-long-term-forecasting">Our approach excels in long term forecasting</h2>
+<h3 id="our-approach-excels-in-long-term-forecasting">Our approach excels in long term forecasting</h3>
 <p><a id="chapter4"></a></p>
 
 <p>As an initial analysis suggested that XGBoost alone could already make good prediction for the next doctor visit using only data in the last time point, we would like to test whether our approach utilizing LLM achieve better performance in case of long term prediction using historical data. To this end, we set up a benchmarking scheme where the feature windows included 45 doctor visits and were slided backward to create increasingly large prediction windows, simulting the situations when doctors want to make forecasting far in the future. Specifically, the prediction windows here ranged from a mean of 124.5 days (95% CI: [121.0, 126.8]) to 554.3 days (95% CI: [547.0, 561.5]). Using 10-fold cross-validation, we evaluated the performance of our LLM-based method with the XGBoost model. Result suggested the superior performance of our method, especially for long term prediction. The longer the prediction window, the more significant difference in performance of the LLM method compared to XGBoost (<strong>Figure 4</strong>).</p>
 
 <div style="text-align: center;">
-  <img src="/assets/images/dpv_fig4.png" alt="Figure 4" style="max-width: 55%; height: auto;" />
+  <img src="/assets/images/dpv_fig4.png" alt="Figure 4" style="max-width: 60%; height: auto;" />
   <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 4. Performance of the LLM-based method compared to XGBoost in long term forecasting.</strong>The x-axis represents different prediction windows from shorter (left) to longer (right).</p> 
 </div>
 
-<h2 id="llm-based-approach-outperformed-baseline-at-several-training-sizes">LLM-based approach outperformed baseline at several training sizes</h2>
+<h3 id="llm-based-approach-outperformed-baseline-at-several-training-sizes">LLM-based approach outperformed baseline at several training sizes</h3>
 <p><a id="chapter5"></a></p>
 
 <p>To evaluate the performance of the LLM-based model with varying sample sizes, HbA1c and LDL levels were predicted for the next doctor visit. Its performance was compared to an LSTM model trained from scratch and a random forest model using the last observed target value (LastObs). Both the LLM and LSTM models excluded target-related variables during training to focus on identifying key biomarkers. To this end we leveraged subsets of 20,000 samples with different train-test ratios.</p>
@@ -383,7 +387,7 @@ Type 2 diabetes (T2D) is a chronic metabolic disorder characterized by elevated 
   <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 5. Performance of LLM-based method compared to baselines at different training sizes.</strong></p> 
 </div>
 
-<h2 id="integrated-gradients-revealed-important-signatures-of-t2d">Integrated gradients revealed important signatures of T2D</h2>
+<h3 id="integrated-gradients-revealed-important-signatures-of-t2d">Integrated gradients revealed important signatures of T2D</h3>
 <p><a id="chapter6"></a></p>
 
 <p>To assess the clinical relevance of the LLM-based model in predicting T2D progression, we conducted an interpretability analysis using integrated gradients to identify the most influential features for HbA1c and LDL predictions. Analyzing 500 samples across 50 doctor visits, the study highlighted key biomarkers and patient characteristics driving the model’s predictions, providing insights into T2D prognosis and guiding personalized care.</p>
@@ -396,11 +400,11 @@ Type 2 diabetes (T2D) is a chronic metabolic disorder characterized by elevated 
 <p>For HbA1c prediction, the analysis revealed that information from the last five visits was critical, emphasizing the importance of recent medical history (<strong>Figure 6</strong>). Among specific features, erythrocyte levels, cholesterol levels, fructose levels, and the length of the prediction window were identified as the most influential factors. Erythrocyte, cholesterol, and fructose levels positively correlated with HbA1c predictions, with their impact being most significant during the final visits in the feature window (<strong>Figure 7</strong>). Erythrocyte count, influenced by blood glucose levels due to glucose binding to hemoglobin A1c, displayed an inverse relationship with HbA1c, though the complexity of this association requires further study. Cholesterol and fructose, well-known markers of insulin resistance, were linked to poor glycemic control, with high LDL cholesterol and excessive fructose intake contributing to elevated HbA1c levels. These findings underscore the potential of these markers as valuable tools for predicting and preventing T2D progression.</p>
 
 <div style="text-align: center;">
-  <img src="/assets/images/dpv_fig7.png" alt="Figure 7" style="max-width: 55%; height: auto;" />
+  <img src="/assets/images/dpv_fig7.png" alt="Figure 7" style="max-width: 70%; height: auto;" />
   <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Figure 7. Gradient trajectory of erythrocyte count, cholesterol and fructose levels across visits in the feature window, respectively. Each line represents one of 500 samples, colours represent the observed HbA1C level at the target point.</strong></p> 
 </div>
 
-<h2 id="take-home-message">Take home message</h2>
+<h3 id="take-home-message">Take home message</h3>
 <p><a id="chapter7"></a></p>
 
 <ul>

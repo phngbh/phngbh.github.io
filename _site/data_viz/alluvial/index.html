@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizing the association between categories or the dynamics of variables over time using alluvial plot</title>
+    <meta name="description" content="Phong BH. Nguyen's personal page - Scientist, programmer, adventurer. Learn about my research, projects, and interests.">
+    <meta name="keywords" content="Phong BH. Nguyen, bioinformatics, data science, machine learning, health informatics, non-communicable diseases, diabetes, cancer, cardiovascular diseases">
+    <meta name="author" content="Phong BH. Nguyen">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Visualizing the association between categories or the dynamics of variables over time using alluvial plot</title>
@@ -15,11 +18,11 @@
 <link rel="canonical" href="http://localhost:4001/data_viz/alluvial/" />
 <meta property="og:url" content="http://localhost:4001/data_viz/alluvial/" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-01-30T01:10:34+01:00" />
+<meta property="article:published_time" content="2025-01-30T11:36:12+01:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Visualizing the association between categories or the dynamics of variables over time using alluvial plot" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T01:10:34+01:00","datePublished":"2025-01-30T01:10:34+01:00","description":"Alluvial plot is versatile and useful in many situations. It can be used to describe the associations between the categories of two or three factor variables. In many cases alluvial plot can also visualize the flow or changes of one or more variables over time or different conditions. In this post I will demeonstrate the utility of alluvial plot in the latter case. Specifically, I will visualize the changes in data modality that a model uses across several training iterations, in the case of IMML model training.","headline":"Visualizing the association between categories or the dynamics of variables over time using alluvial plot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/data_viz/alluvial/"},"url":"http://localhost:4001/data_viz/alluvial/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T11:36:12+01:00","datePublished":"2025-01-30T11:36:12+01:00","description":"Alluvial plot is versatile and useful in many situations. It can be used to describe the associations between the categories of two or three factor variables. In many cases alluvial plot can also visualize the flow or changes of one or more variables over time or different conditions. In this post I will demeonstrate the utility of alluvial plot in the latter case. Specifically, I will visualize the changes in data modality that a model uses across several training iterations, in the case of IMML model training.","headline":"Visualizing the association between categories or the dynamics of variables over time using alluvial plot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/data_viz/alluvial/"},"url":"http://localhost:4001/data_viz/alluvial/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
@@ -103,12 +106,13 @@
       }
       .content {
         flex: 1;
-        padding: 40px;
+        padding: 2vw;
         background: rgba(64,64,64,0.8); /* Different color for the content area */
         color: rgb(221,221,221);
         font-size: 1vw;
         margin-left: 230px;
         margin-top: 40px;
+        text-align: justify;
       }
       .content a {
         color: #F7CE46; /* Change hyperlink color */
@@ -200,15 +204,15 @@
           font-size: 4vw;
         }
         .left-bar {
-          width: 80px; /* Adjust width for smaller screens */
+          width: 16%; /* Adjust width for smaller screens */
           padding: 4px;
           font-size: 2vw; /* Adjust font size for smaller screens */
           top: 7px;
           border-radius: 3px;
         }
         .left-bar img {
-          width: 60px; /* Smaller image for smaller screens */
-          height: 60px;
+          width: 8vw; /* Smaller image for smaller screens */
+          height: 8vw;
           margin-bottom: 2px;
           margin-left: 5px;
         }
@@ -239,20 +243,20 @@
           border-radius: 5px;
           margin-left: 5px;
           width: 100%;
-          font-size: 2vw;
+          font-size: 3vw;
         }
         .toc-content a {
           display: block;
           text-decoration: none;
           margin: 5px 5px;
           padding: 5px;
-          font-size: 2vw;
+          font-size: 3vw;
         }
         .content {
-          padding: 15px;
+          padding: 3vw;
           font-size: 3vw; /* Adjust font size for smaller screens */
           margin-top: 0px;
-          margin-left: 75px;
+          margin-left: 15vw;
         }
         .bash-command {
           font-family: monospace;

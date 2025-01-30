@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluation of the impact of ancestry to drug response in cancer cell lines</title>
+    <meta name="description" content="Phong BH. Nguyen's personal page - Scientist, programmer, adventurer. Learn about my research, projects, and interests.">
+    <meta name="keywords" content="Phong BH. Nguyen, bioinformatics, data science, machine learning, health informatics, non-communicable diseases, diabetes, cancer, cardiovascular diseases">
+    <meta name="author" content="Phong BH. Nguyen">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Evaluation of the impact of ancestry to drug response in cancer cell lines</title>
@@ -15,11 +18,11 @@
 <link rel="canonical" href="http://localhost:4001/projects/5.ancestry/" />
 <meta property="og:url" content="http://localhost:4001/projects/5.ancestry/" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-01-30T01:10:34+01:00" />
+<meta property="article:published_time" content="2025-01-30T11:36:12+01:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Evaluation of the impact of ancestry to drug response in cancer cell lines" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T01:10:34+01:00","datePublished":"2025-01-30T01:10:34+01:00","description":"Cancer research has long relied on the use of in vitro cell lines as pivotal models to understand the mechanisms of the disease and evaluate potential treatments. These cell lines allow researchers to simulate biological processes in a controlled environment, enabling reproducibility and scalability. However, a major limitation of many studies is the lack of comprehensive demographic and genetic characterization of the cell lines used. Specifically, the underrepresentation or incomplete identification of ancestry information poses challenges to the generalizability and precision of research outcomes. Understanding the ancestry of cell lines is critical as it provides context for genetic variations, disease susceptibility, and drug response patterns among diverse populations. Addressing this gap is essential for achieving equitable and effective cancer therapies.","headline":"Evaluation of the impact of ancestry to drug response in cancer cell lines","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/projects/5.ancestry/"},"url":"http://localhost:4001/projects/5.ancestry/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T11:36:12+01:00","datePublished":"2025-01-30T11:36:12+01:00","description":"Cancer research has long relied on the use of in vitro cell lines as pivotal models to understand the mechanisms of the disease and evaluate potential treatments. These cell lines allow researchers to simulate biological processes in a controlled environment, enabling reproducibility and scalability. However, a major limitation of many studies is the lack of comprehensive demographic and genetic characterization of the cell lines used. Specifically, the underrepresentation or incomplete identification of ancestry information poses challenges to the generalizability and precision of research outcomes. Understanding the ancestry of cell lines is critical as it provides context for genetic variations, disease susceptibility, and drug response patterns among diverse populations. Addressing this gap is essential for achieving equitable and effective cancer therapies.","headline":"Evaluation of the impact of ancestry to drug response in cancer cell lines","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/projects/5.ancestry/"},"url":"http://localhost:4001/projects/5.ancestry/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
@@ -103,12 +106,13 @@
       }
       .content {
         flex: 1;
-        padding: 40px;
+        padding: 2vw;
         background: rgba(64,64,64,0.8); /* Different color for the content area */
         color: rgb(221,221,221);
         font-size: 1vw;
         margin-left: 230px;
         margin-top: 40px;
+        text-align: justify;
       }
       .content a {
         color: #F7CE46; /* Change hyperlink color */
@@ -200,15 +204,15 @@
           font-size: 4vw;
         }
         .left-bar {
-          width: 80px; /* Adjust width for smaller screens */
+          width: 16%; /* Adjust width for smaller screens */
           padding: 4px;
           font-size: 2vw; /* Adjust font size for smaller screens */
           top: 7px;
           border-radius: 3px;
         }
         .left-bar img {
-          width: 60px; /* Smaller image for smaller screens */
-          height: 60px;
+          width: 8vw; /* Smaller image for smaller screens */
+          height: 8vw;
           margin-bottom: 2px;
           margin-left: 5px;
         }
@@ -239,20 +243,20 @@
           border-radius: 5px;
           margin-left: 5px;
           width: 100%;
-          font-size: 2vw;
+          font-size: 3vw;
         }
         .toc-content a {
           display: block;
           text-decoration: none;
           margin: 5px 5px;
           padding: 5px;
-          font-size: 2vw;
+          font-size: 3vw;
         }
         .content {
-          padding: 15px;
+          padding: 3vw;
           font-size: 3vw; /* Adjust font size for smaller screens */
           margin-top: 0px;
-          margin-left: 75px;
+          margin-left: 15vw;
         }
         .bash-command {
           font-family: monospace;
@@ -320,7 +324,7 @@
         <p><a id="chapter1"></a>
 Cancer research has long relied on the use of in vitro cell lines as pivotal models to understand the mechanisms of the disease and evaluate potential treatments. These cell lines allow researchers to simulate biological processes in a controlled environment, enabling reproducibility and scalability. However, a major limitation of many studies is the lack of comprehensive demographic and genetic characterization of the cell lines used. Specifically, the underrepresentation or incomplete identification of ancestry information poses challenges to the generalizability and precision of research outcomes. Understanding the ancestry of cell lines is critical as it provides context for genetic variations, disease susceptibility, and drug response patterns among diverse populations. Addressing this gap is essential for achieving equitable and effective cancer therapies.</p>
 
-<h2 id="ancestry-distribution-among-cancer-cell-lines">Ancestry distribution among cancer cell lines</h2>
+<h3 id="ancestry-distribution-among-cancer-cell-lines">Ancestry distribution among cancer cell lines</h3>
 <p><a id="chapter2"></a>
 To tackle this issue, I developed an ancestry inference pipeline designed to accurately classify the genetic backgrounds of a wide range of cancer cell lines. Leveraging extensive genetic data of the cell lines, the available reference genomes for all ancestries and Bayesian statistics, the pipeline infer ancestry with high precision. Details of the pipeline could be found in a <a href="/project/ancestry_inference.html">separate post</a>. To this end I leveraged the cell lines and their genotype data obtained from the <a href="https://www.cancerrxgene.org/">Genomics of Drug Sensitivity in Cancer (GDSC) project</a> and the reference genomes from the five major ancestries from the <a href="https://www.nature.com/articles/nature15393">1000 Genomes Project</a>. The analysis revealed a detailed distribution of ancestries across commonly used cancer cell lines, highlighting a predominance of European-derived lines alongside underrepresentation of African, Asian, and other ancestries (<strong>Figure 1</strong>).</p>
 
@@ -342,7 +346,7 @@ To tackle this issue, I developed an ancestry inference pipeline designed to acc
   </div>
 </div>
 
-<h2 id="disparities-in-drug-response-between-asian-and-caucasian-cell-lines">Disparities in drug response between Asian and Caucasian cell lines</h2>
+<h3 id="disparities-in-drug-response-between-asian-and-caucasian-cell-lines">Disparities in drug response between Asian and Caucasian cell lines</h3>
 <p><a id="chapter3"></a>
 An intriguing aspect of the study is its exploration of disparities in drug responses between Asian and Caucasian cell lines. One-way ANOVA tests revealed 59 significant associations between ancestry and drug response across nine cancer types. Asian cell lines demonstrated heightened sensitivity to PI3K/mTOR inhibitors in glioblastoma (GBM), particularly drugs like apitolisib (Cohen’s d = −1.73), torin 2 (Cohen’s d = −1.87), and WYE-125132 (Cohen’s d = −1.91) (<strong>Figure 4a</strong>). These findings were linked to enriched targets, such as PI3K and mTOR pathways, in Asian GBM cell lines. Conversely, Caucasian cell lines showed greater sensitivity in colorectal adenocarcinoma (COREAD), with all 16 significant associations favoring drugs like anthracyclines (e.g., doxorubicin and epirubicin) (<strong>Figure 4b</strong>). Additionally, Caucasian-derived low-grade glioma (LGG) cell lines exhibited higher sensitivity to irreversible tyrosine kinase inhibitors, such as AST-1306 and CI-1033, targeting EGFR pathways (<strong>Figure 4c</strong>). While somatic mutations, such as NF1 in Asian GBM and MLL2 or PIK3R1 in COREAD, were more prevalent in specific ancestries, they did not fully account for the observed variability in drug responses. These results highlight the critical role of ancestry-informed biomarkers in guiding cancer therapies and suggest opportunities to tailor treatments for improved outcomes in diverse populations.</p>
 
@@ -351,7 +355,7 @@ An intriguing aspect of the study is its exploration of disparities in drug resp
   <p style="max-width: 80%; margin: auto;"><strong>Figure 4. Significant associations between drug response and ancestries (Asian and Caucasian)</strong></p> 
 </div>
 
-<h2 id="discussion">Discussion</h2>
+<h3 id="discussion">Discussion</h3>
 <p><a id="chapter4"></a>
 The novel findings of this study lie in its development of a robust ancestry inference pipeline, which accurately classifies the genetic backgrounds of cancer cell lines. This analysis revealed a predominantly European ancestry distribution, underscoring the need for broader representation of non-European genetic backgrounds in cancer research. These findings have significant implications for the development of more inclusive cancer therapies and equitable healthcare solutions.</p>
 

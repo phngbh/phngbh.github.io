@@ -3,17 +3,17 @@ layout: default
 title: Blog
 ---
 
-<p style="font-size: 17px;">
+<p style="font-size: 15px;">
   This page is reserved to share my own thoughts and experiences working as a scientist in the academic world. I'll post here whenever I have something to write and share.
   Hope you enjoy it.
 </p>
 
-<h1>Latest Posts</h1>
+<h2>Latest Posts</h2>
 
 <ul>
   {% for post in site.posts %}
     <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
       {{ post.excerpt }}
     </li>
   {% endfor %}
