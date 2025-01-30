@@ -3,26 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Describing distribution of samples of two or more categories and their quantitative properties</title>
+    <title>Visualize the association between two continuous variables over time using lineplot</title>
     <meta name="description" content="Phong BH. Nguyen's personal page - Scientist, programmer, adventurer. Learn about my research, projects, and interests.">
     <meta name="keywords" content="Phong BH. Nguyen, bioinformatics, data science, machine learning, health informatics, non-communicable diseases, diabetes, cancer, cardiovascular diseases">
     <meta name="author" content="Phong BH. Nguyen">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" />
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Describing distribution of samples of two or more categories and their quantitative properties</title>
+<title>Visualize the association between two continuous variables over time using lineplot</title>
 <meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="Describing distribution of samples of two or more categories and their quantitative properties" />
+<meta property="og:title" content="Visualize the association between two continuous variables over time using lineplot" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Here I’m not sure the exact name of this kind of plot, Google didn’t really help, so I call it waterfall plot for now, due to the resemblance. This plot is useful when you want to visualize the ranking of the samples of many categories and their quantitative properties at the same time. Particularly, I used this plot to visualize the samples ranked according to their prediction probabilities (in a classification task) and their actual prediction probabilities accross cross-valiation iterations." />
-<meta property="og:description" content="Here I’m not sure the exact name of this kind of plot, Google didn’t really help, so I call it waterfall plot for now, due to the resemblance. This plot is useful when you want to visualize the ranking of the samples of many categories and their quantitative properties at the same time. Particularly, I used this plot to visualize the samples ranked according to their prediction probabilities (in a classification task) and their actual prediction probabilities accross cross-valiation iterations." />
-<link rel="canonical" href="http://localhost:4001/data_viz/waterfall/" />
-<meta property="og:url" content="http://localhost:4001/data_viz/waterfall/" />
+<meta name="description" content="This line plot is useful when you have two continuos variables that are correlated to each other the association is a function of time. Particularly, I used this plot to visualize the dynamics in the association between the integrated gradient of a biomarker (TSH) to the target variable (LDL) accross several doctor visits in the DPV project." />
+<meta property="og:description" content="This line plot is useful when you have two continuos variables that are correlated to each other the association is a function of time. Particularly, I used this plot to visualize the dynamics in the association between the integrated gradient of a biomarker (TSH) to the target variable (LDL) accross several doctor visits in the DPV project." />
+<link rel="canonical" href="http://localhost:4001/data_viz/line/" />
+<meta property="og:url" content="http://localhost:4001/data_viz/line/" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-01-30T12:10:33+01:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Describing distribution of samples of two or more categories and their quantitative properties" />
+<meta property="twitter:title" content="Visualize the association between two continuous variables over time using lineplot" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T12:10:33+01:00","datePublished":"2025-01-30T12:10:33+01:00","description":"Here I’m not sure the exact name of this kind of plot, Google didn’t really help, so I call it waterfall plot for now, due to the resemblance. This plot is useful when you want to visualize the ranking of the samples of many categories and their quantitative properties at the same time. Particularly, I used this plot to visualize the samples ranked according to their prediction probabilities (in a classification task) and their actual prediction probabilities accross cross-valiation iterations.","headline":"Describing distribution of samples of two or more categories and their quantitative properties","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/data_viz/waterfall/"},"url":"http://localhost:4001/data_viz/waterfall/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-30T12:10:33+01:00","datePublished":"2025-01-30T12:10:33+01:00","description":"This line plot is useful when you have two continuos variables that are correlated to each other the association is a function of time. Particularly, I used this plot to visualize the dynamics in the association between the integrated gradient of a biomarker (TSH) to the target variable (LDL) accross several doctor visits in the DPV project.","headline":"Visualize the association between two continuous variables over time using lineplot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/data_viz/line/"},"url":"http://localhost:4001/data_viz/line/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
@@ -311,14 +311,14 @@
             
               <li><a href="#chapter1">Introduction</a></li>
             
-              <li><a href="#chapter2">Waterfall plot</a></li>
+              <li><a href="#chapter2">Lineplot</a></li>
             
           </ul>
         </div>
       </div>
       <div class="content">
         <p><a id="chapter1"></a>
-Here I’m not sure the exact name of this kind of plot, Google didn’t really help, so I call it waterfall plot for now, due to the resemblance. This plot is useful when you want to visualize the ranking of the samples of many categories and their quantitative properties at the same time. Particularly, I used this plot to visualize the samples ranked according to their prediction probabilities (in a classification task) and their actual prediction probabilities accross cross-valiation iterations.</p>
+This line plot is useful when you have two continuos variables that are correlated to each other the association is a function of time. Particularly, I used this plot to visualize the dynamics in the association between the integrated gradient of a biomarker (TSH) to the target variable (LDL) accross several doctor visits in the <a href="/projects/3.dpv">DPV project</a>.</p>
 
 <p>First we need to load necessary R libraries.</p>
 <div class="bash-command">
@@ -329,125 +329,42 @@ Here I’m not sure the exact name of this kind of plot, Google didn’t really 
     </code></pre>
 </div>
 
-<p>The input is a dataframe of the prediction probabilities across interations and the true outcome:</p>
+<p>After finetuning the LLM, I extracted the integrated gradients of all the parameters to evaluate the feature importance. The input for the plot is a 500x50 matrix of gradient values of the biomarker for 500 samples and 50 timepoints.</p>
 
-<div style="text-align: center;">
-  <img src="/assets/images/waterfall_fig1.png" alt="Figure 1" style="max-width: 60%; height: auto;" />
-  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Dataframe of prediction probabilities and the true outcome.</strong></p> 
-</div>
-
-<h2 id="waterfall-plot">Waterfall plot</h2>
+<h3 id="lineplot">Lineplot</h3>
 <p><a id="chapter2"></a></p>
 
-<p>Then I simply use <code class="language-plaintext highlighter-rouge">ggplot2</code> to make the plot:</p>
+<p>Here I modify the input and make the plot:</p>
 
 <div class="bash-command">
     <pre><code class="language-R">
-        ggplot(predobs_inc3, 
-            aes(x=reorder(as.character(ID),Predicted_Probs, mean), 
-            y = Predicted_Probs, col = True_Outcomes)) + 
-            geom_boxplot(width = 0.05, outlier.shape = NA) +
-            ggpubr::color_palette("jco") +
-            labs(col = "Observations") +
-            xlab("Samples") +
-            ylab("Prediction probabilities") +
-            theme(panel.background = element_rect(fill = "white"),
-                    axis.text.x = element_blank(),
-                    axis.ticks.x = element_blank(),
-                    axis.title.x = element_blank())
+        # Color scale for the biomarker
+        col_fun &lt;- colorRamp2(c(-2.5, 0, 6.5), c("deepskyblue4", "white", "coral4"))
+
+        # Modify the matrix
+        colnames(tsh) &lt;- paste0("Visit",1:49) # 49 visits
+        tsh &lt;- pivot_longer(tsh, everything(), names_to = "Time", values_to = "Gradient")
+        tsh$Time &lt;- factor(tsh$Time, levels = paste0("Visit",1:49))
+        tsh$Sample &lt;- rep(paste0(1:500), each = 49) # 500 samples
+        tsh$LDL &lt;- rep(ldl, each = 49)
+
+        # Apply the custom color function
+        tsh$Color &lt;- col_fun(tsh$LDL)
+
+        # Plotting
+        ggplot(tsh, aes(x = Time, y = Gradient, group = LDL, color = Color)) +
+            geom_line(alpha = 0.8) +
+            scale_color_identity() +  # Use the exact colors provided by col_fun
+            theme_minimal() +
+            theme(axis.text.x = element_text(angle = 45))
     </code></pre>
 </div>
 
-<p>The result shows distribution (locations) of the sample as x-axis and their prediction probabilities in the y-axis. More importantly in the case of my project, the plot shows the relative distribution of the true outcomes, case and controls.</p>
+<p>And here is the result:</p>
 
 <div style="text-align: center;">
-  <img src="/assets/images/waterfall_fig2.png" alt="Figure 2" style="max-width: 70%; height: auto;" />
-  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Waterfall plot of sample distribution.</strong></p> 
-</div>
-
-<p>We could go one step further and visualize the quantity of the important biomarkers corresponding to the samples. To this end, we need one more table <code class="language-plaintext highlighter-rouge">df</code>:</p>
-
-<div style="text-align: center;">
-  <img src="/assets/images/waterfall_fig3.png" alt="Figure 3" style="max-width: 70%; height: auto;" />
-  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Levels of biomarkers for the samples.</strong></p> 
-</div>
-
-<ul>
-  <li>Vars: Name of the biomarkers</li>
-  <li>Sample: Sample IDs</li>
-  <li>Values: Biomaker level</li>
-  <li>Median_pred: Median of the prediction probabilities of the samples</li>
-</ul>
-
-<p>Then we add the biomarker levels below the waterfall plot as heatmaps.</p>
-
-<div class="bash-command">
-    <pre><code class="language-R">
-        # Waterfall plot
-        a &lt;- ggplot(predobs, 
-            aes(x=reorder(as.character(ID),Predicted_Probs, mean), 
-            y = Predicted_Probs, col = True_Outcomes)) + 
-            geom_boxplot(width = 0.05, outlier.shape = NA) +
-            ggpubr::color_palette("jco") +
-            labs(col = "Observations") +
-            xlab("Samples") +
-            ylab("Prediction probabilities") +
-            theme(panel.background = element_rect(fill = "white"),
-                    axis.text.x = element_blank(),
-                    axis.ticks.x = element_blank(),
-                    axis.title.x = element_blank())
-        # Heatmap for OLINK markers
-        b &lt;- ggplot(filter(df, Vars %in% olink_anno$SYMBOL), 
-                    aes(x = reorder(Samples, median_pred), 
-                    y = Vars, 
-                    fill = Values))+
-            geom_tile() +
-            scale_fill_gradient2(low="white", high="#FFD92F") +
-            theme(axis.text.x = element_blank(), 
-                    axis.title.y = element_blank(),
-                    axis.ticks.x = element_blank(),
-                    axis.title.x = element_blank())
-        # Heatmap for metabolomic markers
-        c &lt;- ggplot(filter(df, Vars %in% c(meta_anno$Biochemical_F4,"linolenate (18:3n3/6)","DHEA-S")), 
-                    aes(x = reorder(Samples, median_pred), 
-                    y = Vars, 
-                    fill = Values))+
-            geom_tile() +
-            scale_fill_gradient2(low="white", high="#E78AC3") +
-            theme(axis.text.x = element_blank(), 
-                    axis.title.y = element_blank(),
-                    axis.ticks.x = element_blank(),
-                    axis.title.x = element_blank())
-        # Heatmap for transcriptomic markers
-        d &lt;- ggplot(filter(df, Vars %in% tra_anno$SYMBOL), 
-                    aes(x = reorder(Samples, median_pred), 
-                    y = Vars, 
-                    fill = Values))+
-            geom_tile() +
-            scale_fill_gradient2(low="white", high="#FC8D62") +
-            theme(axis.text.x = element_blank(),
-                    axis.title.y = element_blank(),
-                    axis.ticks.x = element_blank(),
-                    axis.title.x = element_blank())
-        # Heatmap for clinical markers
-        e &lt;- ggplot(filter(df, Vars %in% c("Age","Low physical activity")), 
-                    aes(x = reorder(Samples, median_pred), 
-                    y = Vars, 
-                    fill = Values))+
-            geom_tile() +
-            scale_fill_gradient2(low="white", high="#E5C494") +
-            theme(axis.text.x = element_blank(), 
-                    axis.title.y = element_blank(),
-                    axis.ticks.x = element_blank(),
-                    axis.title.x = element_blank())
-    </code></pre>
-</div>
-
-<p>Here is the final result:</p>
-
-<div style="text-align: center;">
-  <img src="/assets/images/waterfall_fig4.png" alt="Figure 4" style="max-width: 70%; height: auto;" />
-  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Waterfall plot coupled with heatmaps of biomarkers.</strong></p> 
+  <img src="/assets/images/line_fig1.png" alt="Figure 1" style="max-width: 80%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 70%;"><strong>Assopciation between TSH's gradient and LDL overtime.</strong></p> 
 </div>
 
       </div>
