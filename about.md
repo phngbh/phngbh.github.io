@@ -83,7 +83,7 @@ For a full list of publications please visit my [Google scholar](https://scholar
 
 3. **Artificial intelligence and machine learning in diabetes research** _Der Diabetologe_, Oct 6, 2021 [Show publication](https://link.springer.com/article/10.1007/s11428-021-00817-w)
 
-4. **Inferred Ancestral Origin of Cancer Cell Lines Associates with Differential Drug Response** _Int. J. Mol. Sci._, Sep 20, 2021 [Show publication](https://www.mdpi.com/1422-0067/22/18/10135)
+4. **Leveraging Pretrained Large Language Model for Prognosis of Type 2 Diabetes Using Longitudinal Medical Records** _medRxiv_, Feb 05, 2025 [Show publication](https://www.medrxiv.org/content/10.1101/2025.02.04.24313200v1)
 
 ## Conference attendance
 <a id="chapter5"></a>
