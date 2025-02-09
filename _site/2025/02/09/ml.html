@@ -1,0 +1,431 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Your Machine Learning Model Doesn't Work (And How to Fix It)</title>
+    <meta name="description" content="Phong BH. Nguyen's personal page - Scientist, programmer, adventurer. Learn about my research, projects, and interests.">
+    <meta name="keywords" content="Phong BH. Nguyen, bioinformatics, data science, machine learning, health informatics, non-communicable diseases, diabetes, cancer, cardiovascular diseases">
+    <meta name="author" content="Phong BH. Nguyen">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Why Your Machine Learning Model Doesn’t Work (And How to Fix It)</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Why Your Machine Learning Model Doesn’t Work (And How to Fix It)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="So, you’ve built a machine learning model, but instead of making magic happen, it’s giving you garbage predictions. Before you rage-quit and blame the universe, let’s go through some common reasons why your model might be struggling—and, more importantly, how to fix them. Spoiler: it’s probably not your model’s fault. More often than not, the real issue is with your data, your approach, or both." />
+<meta property="og:description" content="So, you’ve built a machine learning model, but instead of making magic happen, it’s giving you garbage predictions. Before you rage-quit and blame the universe, let’s go through some common reasons why your model might be struggling—and, more importantly, how to fix them. Spoiler: it’s probably not your model’s fault. More often than not, the real issue is with your data, your approach, or both." />
+<link rel="canonical" href="http://localhost:4000/2025/02/09/ml.html" />
+<meta property="og:url" content="http://localhost:4000/2025/02/09/ml.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-09T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Why Your Machine Learning Model Doesn’t Work (And How to Fix It)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-09T00:00:00+01:00","datePublished":"2025-02-09T00:00:00+01:00","description":"So, you’ve built a machine learning model, but instead of making magic happen, it’s giving you garbage predictions. Before you rage-quit and blame the universe, let’s go through some common reasons why your model might be struggling—and, more importantly, how to fix them. Spoiler: it’s probably not your model’s fault. More often than not, the real issue is with your data, your approach, or both.","headline":"Why Your Machine Learning Model Doesn’t Work (And How to Fix It)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/02/09/ml.html"},"url":"http://localhost:4000/2025/02/09/ml.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <style>
+      body {
+        background: rgba(64,64,64,0.8);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        color: white;
+        font-size: 2vw;
+      }
+      .tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0.8vw;
+        background: rgba(43, 43, 43, 1); /* Coffee color with reduced opacity */
+        font-size: 3vw;
+        position: fixed;
+      }
+      .tabs a {
+        color: #F7CE46;
+        text-decoration: none;
+        margin: 0 10px;
+        padding: 10px;
+        background: none;
+        border-radius: 1vw;
+        font-size: 1.3vw;
+      }
+      .tabs a.current {
+        background: #F7CE46; /* Different color for the current page */
+        color: rgba(43, 43, 43, 1);
+        border-radius: 1vw;
+        font-size: 1.5vw;
+      }
+      .menu-button {
+        display: none; /* Hide by default */
+      }
+      .toc-button {
+        display: none; /* Hide by default */
+      }
+      .container {
+        display: flex;
+        flex: 1;
+      }
+      .left-bar {
+        background: rgba(51, 51, 51, 0.9); /* Coffee color with reduced opacity */
+        width: 16vw;
+        padding: 0.5vw;
+        position: fixed;
+        top: 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2.5vw;
+      }
+      .left-bar img {
+        border-radius: 50%;
+        width: 10vw;
+        height: 10vw;
+        object-fit: cover;
+        margin-bottom: 0.5vw;
+        margin-left: 0.8vw;
+      }
+      .left-bar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .left-bar ul li {
+        margin: 0.3vw 0.3vw;
+      }
+      .left-bar ul li a {
+        color: rgb(221,221,221);
+        text-decoration: none;
+        font-size: 1.2vw;
+      }
+      .content {
+        flex: 1;
+        padding: 40px;
+        background: rgba(64,64,64,0.8); /* Different color for the content area */
+        color: rgb(221,221,221);
+        font-size: 1vw;
+        margin-left: 230px;
+        margin-top: 40px;
+        text-align: justify;
+      }
+      .content a {
+        color: #F7CE46; /* Change hyperlink color */
+      }
+      /* Custom styles for headers */
+      h1, h2, h3, h4, h5, h6 {
+        color: #F7CE46; /* Change header color */
+        background-color: rgba(43, 43, 43, 0.8); /* Highlight background color */
+        padding: 5px; /* Add padding */
+        border-radius: 5px; /* Add border radius */
+      }
+      .project-item {
+        clear: both;
+        margin-bottom: 30px;
+      }
+      @media (max-aspect-ratio: 1/1) {
+        body {
+          font-size: 2vw; /* Adjust font size for smaller screens */
+        }
+        .tabs {
+          justify-content: space-between;
+          padding: 0px;
+          font-size: 8px; /* Adjust font size for smaller screens */
+        }
+        .tabs a {
+          display: none; /* Hide tabs on phone screens */
+        }
+        .tabs a.current {
+          font-size: 4vw;
+        }
+        .menu-button {
+          display: block; /* Show menu button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 10px;
+          font-size: 4vw;
+          cursor: pointer;
+          position: fixed;
+          border-radius: 5px;
+          top: 10px;
+          right: 20px;
+        }
+        .menu-content {
+          display: none;
+          position: absolute;
+          top: 60px;
+          right: 20px;
+          background: rgba(43, 43, 43, 1);
+          padding: 10px;
+          border-radius: 5px;
+          z-index: 1001;
+        }
+        .menu-content a {
+          display: block;
+          color: #F7CE46;
+          text-decoration: none;
+          margin: 5px 0;
+          padding: 5px;
+          font-size: 4vw;
+        }
+        .left-bar {
+          width: 16%; /* Adjust width for smaller screens */
+          padding: 4px;
+          font-size: 3vw; /* Adjust font size for smaller screens */
+          top: 7px;
+          border-radius: 3px;
+        }
+        .left-bar img {
+          width: 8vw; /* Smaller image for smaller screens */
+          height: 8vw;
+          margin-bottom: 2px;
+          margin-left: 5px;
+        }
+        .left-bar ul li {
+          margin: 5px 0px;
+        }
+        .left-bar ul li a {
+          font-size: 3vw; /* Adjust font size for smaller screens */
+          padding: 2px;
+          margin-top: 2px;
+        }
+        .toc-button {
+          display: block; /* Show table of content button on phone screens */
+          background: #F7CE46;
+          color: rgba(43, 43, 43, 1);
+          border: none;
+          padding: 3px 3px;
+          font-size: 2vw;
+          cursor: pointer;
+          border-radius: 3px;
+          margin-top: 3px;
+        }
+        .toc-content {
+          display: none;
+          background: rgba(51, 51, 51, 0.9);
+          color: #F7CE46;
+          padding: 8px;
+          border-radius: 5px;
+          margin-left: 3px;
+          width: 100%;
+          font-size: 3vw;
+        }
+        .toc-content a {
+          display: block;
+          text-decoration: none;
+          margin: 5px 0;
+          padding: 5px;
+          font-size: 3vw;
+        }
+        .content {
+          padding: 15px;
+          font-size: 3vw; /* Adjust font size for smaller screens */
+          margin-top: 0px;
+          margin-left: 15vw;
+          text-align: justify;
+        }
+        .project-item {
+          margin-left: 0px;
+          list-style-type: none; /* Remove default list styling */
+        }
+        ul {
+          padding: 0; /* Remove default padding */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <button class="menu-button" onclick="toggleMenu()">Menu</button>
+      <div class="menu-content" id="menu-content">
+        <nav>
+  
+    <a href="/">Home</a>
+  
+    <a href="/about.html">About me</a>
+  
+    <a href="/projects.html">Projects/ tools development</a>
+  
+    <a href="/data_viz.html">Data visualization</a>
+  
+    <a href="/blog.html">Blog</a>
+  
+</nav>
+      </div>
+    </div>
+    <div class="container">
+      <div class="left-bar">
+        <img src="/assets/images/page_img.jpg" alt="Profile Picture">
+        <button class="toc-button" onclick="toggleToc()">Table of Content</button>
+        <div class="toc-content" id="toc-content">
+          <ul>
+            
+              <li><a href="#chapter1">Introduction</a></li>
+            
+              <li><a href="#chapter2">Garbage In, Garbage Out</a></li>
+            
+              <li><a href="#chapter3">Overfitting</a></li>
+            
+              <li><a href="#chapter4">Class Imbalance</a></li>
+            
+              <li><a href="#chapter5">Right Algorithm and Metrics</a></li>
+            
+              <li><a href="#chapter6">Final remarks</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <h1>Why Your Machine Learning Model Doesn't Work (And How to Fix It)</h1>
+
+<p>
+  09 Feb 2025
+  
+  
+</p>
+
+<p><a id="chapter1"></a>
+So, you’ve built a machine learning model, but instead of making magic happen, it’s giving you garbage predictions. Before you rage-quit and blame the universe, let’s go through some common reasons why your model might be struggling—and, more importantly, how to fix them. Spoiler: it’s probably not your model’s fault. More often than not, the real issue is with your data, your approach, or both.</p>
+
+<h3 id="1-garbage-in-garbage-out-focus-on-your-data">1. Garbage In, Garbage Out: Focus on Your Data</h3>
+<p><a id="chapter2"></a>
+There’s a reason it’s called <em>data</em> science. First thing you should check is your data. Your model is only as good as the data you feed it. If your input is messy, inconsistent, or just plain wrong, don’t expect miracles. Here’s what you need to check:</p>
+
+<ul>
+  <li>
+    <p><strong>Normalize and transform your data</strong>: If your data has weird distributions, consider log transformations, standardization, or other normalizing techniques to make it more manageable.</p>
+  </li>
+  <li>
+    <p><strong>Handle missing data</strong>: Don’t just pretend those NaNs don’t exist. Study the missing patterns and impute missing values wisely or, in some cases, remove problematic entries altogether.</p>
+  </li>
+  <li>
+    <p><strong>Filter out low-quality samples</strong>: If some data points look suspicious (e.g., extreme missingness or inconsistent labels), you might need to drop them.</p>
+  </li>
+  <li>
+    <p><strong>Remove redundant variables</strong>: More features don’t always mean better models. Get rid of irrelevant or highly correlated variables.</p>
+  </li>
+  <li>
+    <p><strong>Apply feature selection</strong>: Use methods like Recursive Feature Elimination (RFE), Lasso regression or even <a href="/projects/2.imml">my fancy IMML framework</a> to keep only the most important features.</p>
+  </li>
+  <li>
+    <p><strong>Study batch and technical effects</strong>: If your data comes from multiple sources, batch effects can introduce bias. PCA or t-SNE can help identify these problems.</p>
+  </li>
+  <li>
+    <p><strong>Identify outliers</strong>: Look at the distribution of your features. Box plots, histograms, and scatter plots can reveal weird anomalies.</p>
+  </li>
+  <li>
+    <p><strong>Leverage visualization tools</strong>: Use heatmaps to check for correlation structures and Principal Component Analysis (PCA) to detect clustering or outlier issues.</p>
+  </li>
+</ul>
+
+<p>If your data is bad, even the best model in the world won’t save you. Clean it up first.</p>
+
+<h3 id="2-overfitting-your-model-knows-too-much-and-thats-bad">2. Overfitting: Your Model Knows Too Much (And That’s Bad)</h3>
+<p><a id="chapter3"></a>
+Your model may seem to perform well on training data but crashes and burns on real-world data. Congratulations—you’ve overfitted. Here’s how to fix it:</p>
+
+<ul>
+  <li>
+    <p><strong>Regularization</strong>: Techniques like L1 (Lasso) and L2 (Ridge) regularization help prevent excessive complexity by penalizing large weights.</p>
+  </li>
+  <li>
+    <p><strong>Early stopping</strong>: Stop training before your model memorizes noise.</p>
+  </li>
+  <li>
+    <p><strong>Dropout</strong>: Randomly dropping a fraction of neurons during training forces the network to generalize better.</p>
+  </li>
+  <li>
+    <p><strong>Weight decay</strong>: A technique to reduce overfitting by modifying the update rule for gradient descent.</p>
+  </li>
+  <li>
+    <p><strong>Simplify your architecture</strong>: If you’re using deep learning, maybe your model doesn’t need 50 layers. Sometimes, a shallower network works just fine.</p>
+  </li>
+</ul>
+
+<p>The goal is to balance learning useful patterns without memorizing noise.</p>
+
+<h3 id="3-dealing-with-class-imbalance">3. Dealing with Class Imbalance</h3>
+<p><a id="chapter4"></a>
+If your dataset is 90% one class and 10% another, your model might take the easy way out and just predict the majority class all the time. Here’s what you can do:</p>
+
+<ul>
+  <li>
+    <p><strong>Resampling techniques</strong>: Use oversampling (e.g., SMOTE) to generate more samples of the minority class or undersampling to remove some majority class instances.</p>
+  </li>
+  <li>
+    <p><strong>Class weighting</strong>: Modify your loss function to give more importance to the minority class.</p>
+  </li>
+  <li>
+    <p><strong>Use different evaluation metrics</strong>: Accuracy isn’t useful when dealing with imbalanced data. Instead, use F1-score, precision-recall curves, or the area under the ROC curve (AUC-ROC).</p>
+  </li>
+</ul>
+
+<p>Ignoring class imbalance leads to models that look good on paper but fail in real-world scenarios.</p>
+
+<h3 id="4-choosing-the-right-algorithm-and-metrics">4. Choosing the Right Algorithm and Metrics</h3>
+<p><a id="chapter5"></a>
+Not all algorithms are created equal. If your model is too simple, it won’t capture important patterns. If it’s too complex, it won’t generalize and be harder to interpret. You need to find the sweet spot.</p>
+
+<ul>
+  <li>
+    <p><strong>Predictive power, and interpretability</strong>: A deep learning model might give you the best accuracy, but is it necessary? Simpler models like decision trees, logistic regression, or gradient boosting may work just as well while being easier to explain.</p>
+  </li>
+  <li>
+    <p><strong>Use cross-validation</strong>: Stratified k-fold cross-validation ensures your model is tested on different portions of your dataset and prevents you from fooling yourself with lucky train-test splits.</p>
+  </li>
+  <li>
+    <p><strong>Pick proper performance metrics</strong>: Depending on your problem, accuracy might be a terrible metric. Use precision-recall, F1-score, or mean squared error (MSE) depending on your task.</p>
+  </li>
+</ul>
+
+<p>A good model isn’t just one that works well—it’s one that works well and makes sense.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p><a id="chapter6"></a>
+If your machine learning model isn’t working, don’t panic. It’s usually not the algorithm’s fault. More often than not, bad data, overfitting, class imbalance, or inappropriate model choices are to blame. By cleaning your data, preventing overfitting, handling imbalanced classes, and choosing the right metrics, you can turn things around.</p>
+
+<p>At the end of the day, machine learning is as much about understanding your data as it is about fancy models. Get your foundations right, and your model will start making sense. Happy debugging!</p>
+
+      </div>
+    </div>
+    <script>
+      function toggleMenu() {
+        var menuContent = document.getElementById('menu-content');
+        if (menuContent.style.display === 'block') {
+          menuContent.style.display = 'none';
+        } else {
+          menuContent.style.display = 'block';
+        }
+      }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('menu-content');
+        var menuButton = document.querySelector('.menu-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
+      function toggleToc() {
+        var tocContent = document.getElementById('toc-content');
+        if (tocContent.style.display === 'block') {
+          tocContent.style.display = 'none';
+        } else {
+          tocContent.style.display = 'block';
+        }
+      }
+      // Hide menu when clicking outside of it
+      document.addEventListener('click', function(event) {
+        var menu = document.getElementById('toc-content');
+        var menuButton = document.querySelector('.toc-button');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

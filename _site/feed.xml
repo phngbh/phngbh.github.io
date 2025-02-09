@@ -1,4 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-03T17:31:09+01:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">Ways to Imporove Your (Scientific) Talks</title><link href="http://localhost:4000/2025/01/25/scitalks.html" rel="alternate" type="text/html" title="Ways to Imporove Your (Scientific) Talks" /><published>2025-01-25T00:00:00+01:00</published><updated>2025-01-25T00:00:00+01:00</updated><id>http://localhost:4000/2025/01/25/scitalks</id><content type="html" xml:base="http://localhost:4000/2025/01/25/scitalks.html"><![CDATA[<p><a id="chapter1"></a>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-09T20:41:03+01:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">Why Your Machine Learning Model Doesn’t Work (And How to Fix It)</title><link href="http://localhost:4000/2025/02/09/ml.html" rel="alternate" type="text/html" title="Why Your Machine Learning Model Doesn’t Work (And How to Fix It)" /><published>2025-02-09T00:00:00+01:00</published><updated>2025-02-09T00:00:00+01:00</updated><id>http://localhost:4000/2025/02/09/ml</id><content type="html" xml:base="http://localhost:4000/2025/02/09/ml.html"><![CDATA[<p><a id="chapter1"></a>
+So, you’ve built a machine learning model, but instead of making magic happen, it’s giving you garbage predictions. Before you rage-quit and blame the universe, let’s go through some common reasons why your model might be struggling—and, more importantly, how to fix them. Spoiler: it’s probably not your model’s fault. More often than not, the real issue is with your data, your approach, or both.</p>
+
+<h3 id="1-garbage-in-garbage-out-focus-on-your-data">1. Garbage In, Garbage Out: Focus on Your Data</h3>
+<p><a id="chapter2"></a>
+There’s a reason it’s called <em>data</em> science. First thing you should check is your data. Your model is only as good as the data you feed it. If your input is messy, inconsistent, or just plain wrong, don’t expect miracles. Here’s what you need to check:</p>
+
+<ul>
+  <li>
+    <p><strong>Normalize and transform your data</strong>: If your data has weird distributions, consider log transformations, standardization, or other normalizing techniques to make it more manageable.</p>
+  </li>
+  <li>
+    <p><strong>Handle missing data</strong>: Don’t just pretend those NaNs don’t exist. Study the missing patterns and impute missing values wisely or, in some cases, remove problematic entries altogether.</p>
+  </li>
+  <li>
+    <p><strong>Filter out low-quality samples</strong>: If some data points look suspicious (e.g., extreme missingness or inconsistent labels), you might need to drop them.</p>
+  </li>
+  <li>
+    <p><strong>Remove redundant variables</strong>: More features don’t always mean better models. Get rid of irrelevant or highly correlated variables.</p>
+  </li>
+  <li>
+    <p><strong>Apply feature selection</strong>: Use methods like Recursive Feature Elimination (RFE), Lasso regression or even <a href="/projects/2.imml">my fancy IMML framework</a> to keep only the most important features.</p>
+  </li>
+  <li>
+    <p><strong>Study batch and technical effects</strong>: If your data comes from multiple sources, batch effects can introduce bias. PCA or t-SNE can help identify these problems.</p>
+  </li>
+  <li>
+    <p><strong>Identify outliers</strong>: Look at the distribution of your features. Box plots, histograms, and scatter plots can reveal weird anomalies.</p>
+  </li>
+  <li>
+    <p><strong>Leverage visualization tools</strong>: Use heatmaps to check for correlation structures and Principal Component Analysis (PCA) to detect clustering or outlier issues.</p>
+  </li>
+</ul>
+
+<p>If your data is bad, even the best model in the world won’t save you. Clean it up first.</p>
+
+<h3 id="2-overfitting-your-model-knows-too-much-and-thats-bad">2. Overfitting: Your Model Knows Too Much (And That’s Bad)</h3>
+<p><a id="chapter3"></a>
+Your model may seem to perform well on training data but crashes and burns on real-world data. Congratulations—you’ve overfitted. Here’s how to fix it:</p>
+
+<ul>
+  <li>
+    <p><strong>Regularization</strong>: Techniques like L1 (Lasso) and L2 (Ridge) regularization help prevent excessive complexity by penalizing large weights.</p>
+  </li>
+  <li>
+    <p><strong>Early stopping</strong>: Stop training before your model memorizes noise.</p>
+  </li>
+  <li>
+    <p><strong>Dropout</strong>: Randomly dropping a fraction of neurons during training forces the network to generalize better.</p>
+  </li>
+  <li>
+    <p><strong>Weight decay</strong>: A technique to reduce overfitting by modifying the update rule for gradient descent.</p>
+  </li>
+  <li>
+    <p><strong>Simplify your architecture</strong>: If you’re using deep learning, maybe your model doesn’t need 50 layers. Sometimes, a shallower network works just fine.</p>
+  </li>
+</ul>
+
+<p>The goal is to balance learning useful patterns without memorizing noise.</p>
+
+<h3 id="3-dealing-with-class-imbalance">3. Dealing with Class Imbalance</h3>
+<p><a id="chapter4"></a>
+If your dataset is 90% one class and 10% another, your model might take the easy way out and just predict the majority class all the time. Here’s what you can do:</p>
+
+<ul>
+  <li>
+    <p><strong>Resampling techniques</strong>: Use oversampling (e.g., SMOTE) to generate more samples of the minority class or undersampling to remove some majority class instances.</p>
+  </li>
+  <li>
+    <p><strong>Class weighting</strong>: Modify your loss function to give more importance to the minority class.</p>
+  </li>
+  <li>
+    <p><strong>Use different evaluation metrics</strong>: Accuracy isn’t useful when dealing with imbalanced data. Instead, use F1-score, precision-recall curves, or the area under the ROC curve (AUC-ROC).</p>
+  </li>
+</ul>
+
+<p>Ignoring class imbalance leads to models that look good on paper but fail in real-world scenarios.</p>
+
+<h3 id="4-choosing-the-right-algorithm-and-metrics">4. Choosing the Right Algorithm and Metrics</h3>
+<p><a id="chapter5"></a>
+Not all algorithms are created equal. If your model is too simple, it won’t capture important patterns. If it’s too complex, it won’t generalize and be harder to interpret. You need to find the sweet spot.</p>
+
+<ul>
+  <li>
+    <p><strong>Predictive power, and interpretability</strong>: A deep learning model might give you the best accuracy, but is it necessary? Simpler models like decision trees, logistic regression, or gradient boosting may work just as well while being easier to explain.</p>
+  </li>
+  <li>
+    <p><strong>Use cross-validation</strong>: Stratified k-fold cross-validation ensures your model is tested on different portions of your dataset and prevents you from fooling yourself with lucky train-test splits.</p>
+  </li>
+  <li>
+    <p><strong>Pick proper performance metrics</strong>: Depending on your problem, accuracy might be a terrible metric. Use precision-recall, F1-score, or mean squared error (MSE) depending on your task.</p>
+  </li>
+</ul>
+
+<p>A good model isn’t just one that works well—it’s one that works well and makes sense.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p><a id="chapter6"></a>
+If your machine learning model isn’t working, don’t panic. It’s usually not the algorithm’s fault. More often than not, bad data, overfitting, class imbalance, or inappropriate model choices are to blame. By cleaning your data, preventing overfitting, handling imbalanced classes, and choosing the right metrics, you can turn things around.</p>
+
+<p>At the end of the day, machine learning is as much about understanding your data as it is about fancy models. Get your foundations right, and your model will start making sense. Happy debugging!</p>]]></content><author><name></name></author><summary type="html"><![CDATA[So, you’ve built a machine learning model, but instead of making magic happen, it’s giving you garbage predictions. Before you rage-quit and blame the universe, let’s go through some common reasons why your model might be struggling—and, more importantly, how to fix them. Spoiler: it’s probably not your model’s fault. More often than not, the real issue is with your data, your approach, or both.]]></summary></entry><entry><title type="html">Ways to Imporove Your (Scientific) Talks</title><link href="http://localhost:4000/2025/01/25/scitalks.html" rel="alternate" type="text/html" title="Ways to Imporove Your (Scientific) Talks" /><published>2025-01-25T00:00:00+01:00</published><updated>2025-01-25T00:00:00+01:00</updated><id>http://localhost:4000/2025/01/25/scitalks</id><content type="html" xml:base="http://localhost:4000/2025/01/25/scitalks.html"><![CDATA[<p><a id="chapter1"></a>
 Let’s face it, giving a good scientific talk is a skill that can set you apart. Whether you’re presenting at a conference, teaching a class, or keeping your team awake during a meeting, how you communicate your research matters. It’s not just about dumping data; it’s about inspiring, educating, and connecting with your audience. Based on my own (sometimes humbling and occasionally amusing) experiences during my PhD, here’s a practical guide to help you deliver scientific talks that people will actually remember.</p>
 
 <h3 id="1-have-a-high-quality-slide-deck">1. Have a high quality slide deck</h3>
