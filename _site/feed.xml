@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-09T20:41:03+01:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">Why Your Machine Learning Model Doesn’t Work (And How to Fix It)</title><link href="http://localhost:4000/2025/02/09/ml.html" rel="alternate" type="text/html" title="Why Your Machine Learning Model Doesn’t Work (And How to Fix It)" /><published>2025-02-09T00:00:00+01:00</published><updated>2025-02-09T00:00:00+01:00</updated><id>http://localhost:4000/2025/02/09/ml</id><content type="html" xml:base="http://localhost:4000/2025/02/09/ml.html"><![CDATA[<p><a id="chapter1"></a>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-15T21:19:16+01:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">A bit about Interpretability</title><link href="http://localhost:4000/2025/03/15/interpret.html" rel="alternate" type="text/html" title="A bit about Interpretability" /><published>2025-03-15T00:00:00+01:00</published><updated>2025-03-15T00:00:00+01:00</updated><id>http://localhost:4000/2025/03/15/interpret</id><content type="html" xml:base="http://localhost:4000/2025/03/15/interpret.html"><![CDATA[<p><a id="chapter1"></a>
+Interpretability in machine learning is one of the topics I paid attention to throughout my PhD. Especially in biomedical research, building models that predict outcomes accurately is thrilling, but it’s not the entire story. The magic happens when we truly understand what these models tell us and translate those insights into something meaningful. In this post, let’s dive into why interpretability matters and explore some practical ways to make our models both understandable and impactful.</p>
+
+<h3 id="1-interpretability-in-biomedical-research">1. Interpretability in Biomedical research</h3>
+<p><a id="chapter2"></a>
+Interpretability isn’t just a fancy word—it’s crucial for translating ML models into real-world biomedical applications. It helps scientists uncover biomarkers, provides deeper mechanistic insights into diseases, and assists biotech and pharma in drug discovery. Equally important, interpretability boosts trust: doctors, researchers, and even patients can better accept and use ML tools when they understand what’s behind predictions.</p>
+
+<p>Simpler models often provide better interpretability. For instance, let’s take a look at this cute picture comparing a decision tree and a deep neural network:</p>
+
+<div style="text-align: center;">
+  <img src="/assets/images/interpretability.jpeg" alt="Figure 1" style="max-width: 70%; height: auto;" />
+  <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Comparison between decision tree and deep neural network.</strong></p> 
+</div>
+
+<p>In the decision tree, we see exactly how decisions are made (e.g., age and gender directly influence the risk, and age is relatively more important). It’s as clear as preparing an organic fruit salad—you see exactly what’s going in, fresh and straightforward! Conversely, the deep neural network is more like a premade smoothie—delicious but with mysterious ingredients blended together, leaving you guessing what’s inside!</p>
+
+<h3 id="2-inherently-interpretable-algorithms">2. Inherently interpretable algorithms</h3>
+<p><a id="chapter3"></a>
+In biomedical research, we often prefer simpler models such as linear regression, logistic regression, or decision trees. Why? Because most biomedical studies typically have smaller sample sizes and limited computational resources. Besides, simpler models generally perform reasonably well for tasks like classification and forecasting.</p>
+
+<p>These simpler models come with inherent interpretability, meaning you can directly extract feature importance from the model parameters themselves. For example:</p>
+
+<ul>
+  <li>
+    <p><strong>Linear models</strong>: The coefficients directly indicate the importance and direction (positive or negative influence) of each feature. Like picking out individual fruits, you clearly see what and how much contributes to your tasty salad.</p>
+  </li>
+  <li>
+    <p><strong>Tree-based models</strong> (Decision Trees, Random Forests): You can explicitly visualize and interpret how each feature influences predictions through tree splits. Feature importance can be quantified by how much each feature reduces uncertainty or error—each decision step.</p>
+  </li>
+</ul>
+
+<p>Thus, choosing simpler algorithms often gives you immediate interpretability, making your life easier—no detective work needed here, just fresh ingredients!</p>
+
+<h3 id="3-posthoc-interpretability-in-deep-learning">3. Posthoc interpretability in deep learning</h3>
+<p><a id="chapter4"></a>
+But what if we have sufficient samples, resources, and a strong desire to push predictive power to the limits? Deep learning is our superhero, though it usually comes wrapped in a complex, mysterious package—much like a premade smoothie. Tasty? Yes. Transparent? Not always!</p>
+
+<p>Fortunately, we have posthoc methods to make sense of these complex models after they’ve been trained:</p>
+
+<ul>
+  <li>
+    <p><a href="https://papers.nips.cc/paper_files/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html">SHAP (SHapley Additive exPlanations)</a> : SHAP assigns each feature an importance value for a particular prediction, inspired by cooperative game theory. It explains individual predictions clearly by measuring each feature’s contribution.</p>
+  </li>
+  <li>
+    <p><a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Integrated Gradients</a> : Integrated gradients measure the contribution of each input feature by integrating gradients along the path from a baseline input (often zero) to the actual input. It reveals how changing each input slightly affects the model’s prediction.</p>
+  </li>
+</ul>
+
+<p>These methods act like nutritional labels or ingredient lists—turning your mysterious smoothie into something you can confidently savor!</p>
+
+<h3 id="4-incorporation-of-biological-knowledge">4. Incorporation of biological knowledge</h3>
+<p><a id="chapter5"></a>
+Adding biological expertise is like sprinkling some expert seasoning that you know exactly what it does onto your dish—it elevates the entire analysis. By integrating prior biological knowledge during feature selection, we do not only narrow down the search space to “relevant features”, but also enhance interpretability by associating our features with prior biological knowledge that might boost mechanistic explaination. Resources like databases for molecular attributes and phenotype associations (e.g., KEGG, Reactome, Gene Ontology) significantly empower our interpretations.</p>
+
+<p>However, be cautious here, biological knowledge is limited. The current available knowledge might not be sufficient to explain all the variance within our examined dataset. Always pair it with unbiased approaches to ensure comprehensive and balanced analyses.</p>
+
+<h3 id="final-remarks">Final remarks</h3>
+<p><a id="chapter6"></a>
+Interpretability isn’t just icing on the ML cake—it’s the flour holding it all together. By prioritizing understandable models and cleverly combining computational methods with biological knowledge, we can unlock the true potential of ML in biomedical research.</p>
+
+<p>Above are some thoughts for building ML models we can trust, understand, and genuinely enjoy unraveling!</p>
+
+<p>Happy interpreting!</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Interpretability in machine learning is one of the topics I paid attention to throughout my PhD. Especially in biomedical research, building models that predict outcomes accurately is thrilling, but it’s not the entire story. The magic happens when we truly understand what these models tell us and translate those insights into something meaningful. In this post, let’s dive into why interpretability matters and explore some practical ways to make our models both understandable and impactful.]]></summary></entry><entry><title type="html">Why Your Machine Learning Model Doesn’t Work (And How to Fix It)</title><link href="http://localhost:4000/2025/02/09/ml.html" rel="alternate" type="text/html" title="Why Your Machine Learning Model Doesn’t Work (And How to Fix It)" /><published>2025-02-09T00:00:00+01:00</published><updated>2025-02-09T00:00:00+01:00</updated><id>http://localhost:4000/2025/02/09/ml</id><content type="html" xml:base="http://localhost:4000/2025/02/09/ml.html"><![CDATA[<p><a id="chapter1"></a>
 So, you’ve built a machine learning model, but instead of making magic happen, it’s giving you garbage predictions. Before you rage-quit and blame the universe, let’s go through some common reasons why your model might be struggling—and, more importantly, how to fix them. Spoiler: it’s probably not your model’s fault. More often than not, the real issue is with your data, your approach, or both.</p>
 
 <h3 id="1-garbage-in-garbage-out-focus-on-your-data">1. Garbage In, Garbage Out: Focus on Your Data</h3>
