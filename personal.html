@@ -1,0 +1,19 @@
+---
+layout: default
+title: Personal Blog
+---
+
+<p style="font-size: 15px;">
+  Personal experience is posted here. This page is dedicated to sharing my personal journey, thoughts, and experiences outside of my professional work.
+</p>
+
+<h2>Latest Posts</h2>
+
+<ul>
+  {% for post in site.personal %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      <span>{{ post.date | date: "%b %-d, %Y" }}</span>
+    </li>
+  {% endfor %}
+</ul>

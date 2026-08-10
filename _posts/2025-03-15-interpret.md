@@ -22,7 +22,7 @@ Interpretability in machine learning is one of the topics I paid attention to th
 
 ### 1. Interpretability in Biomedical research
 <a id="chapter2"></a>
-Interpretability isn't just a fancy word—it’s crucial for translating ML models into real-world biomedical applications. It helps scientists uncover biomarkers, provides deeper mechanistic insights into diseases, and assists biotech and pharma in drug discovery. Equally important, interpretability boosts trust: doctors, researchers, and even patients can better accept and use ML tools when they understand what's behind predictions.
+Interpretability isn't just a fancy word, it’s crucial for translating ML models into real-world biomedical applications. It helps scientists uncover biomarkers, provides deeper mechanistic insights into diseases, and assists biotech and pharma in drug discovery. Equally important, interpretability boosts trust: doctors, researchers, and even patients can better accept and use ML tools when they understand what's behind predictions.
 
 Simpler models often provide better interpretability. For instance, let’s take a look at this cute picture comparing a decision tree and a deep neural network:
 
@@ -31,7 +31,7 @@ Simpler models often provide better interpretability. For instance, let’s take
   <p style="max-width: 80%; margin: auto; font-size: 10px;"><strong>Comparison between decision tree and deep neural network.</strong></p> 
 </div>
 
-In the decision tree, we see exactly how decisions are made (e.g., age and gender directly influence the risk, and age is relatively more important). It’s as clear as preparing an organic fruit salad—you see exactly what's going in, fresh and straightforward! Conversely, the deep neural network is more like a premade smoothie—delicious but with mysterious ingredients blended together, leaving you guessing what's inside!
+In the decision tree, we see exactly how decisions are made (e.g., age and gender directly influence the risk, and age is relatively more important). It’s as clear as preparing an organic fruit salad, you see exactly what's going in, fresh and straightforward! Conversely, the deep neural network is more like a premade smoothie, delicious but with mysterious ingredients blended together, leaving you guessing what's inside!
 
 ### 2. Inherently interpretable algorithms
 <a id="chapter3"></a>
@@ -41,13 +41,13 @@ These simpler models come with inherent interpretability, meaning you can direct
 
 - **Linear models**: The coefficients directly indicate the importance and direction (positive or negative influence) of each feature. Like picking out individual fruits, you clearly see what and how much contributes to your tasty salad.
 
-- **Tree-based models** (Decision Trees, Random Forests): You can explicitly visualize and interpret how each feature influences predictions through tree splits. Feature importance can be quantified by how much each feature reduces uncertainty or error—each decision step.
+- **Tree-based models** (Decision Trees, Random Forests): You can explicitly visualize and interpret how each feature influences predictions through tree splits. Feature importance can be quantified by how much each feature reduces uncertainty or error in each decision step.
 
-Thus, choosing simpler algorithms often gives you immediate interpretability, making your life easier—no detective work needed here, just fresh ingredients!
+Thus, choosing simpler algorithms often gives you immediate interpretability, making your life easier, no detective work needed here, just fresh ingredients.
 
 ### 3. Posthoc interpretability in deep learning
 <a id="chapter4"></a>
-But what if we have sufficient samples, resources, and a strong desire to push predictive power to the limits? Deep learning is our superhero, though it usually comes wrapped in a complex, mysterious package—much like a premade smoothie. Tasty? Yes. Transparent? Not always!
+But what if we have sufficient samples, resources, and a strong desire to push predictive power to the limits? Deep learning is our superhero, though it usually comes wrapped in a complex, mysterious package, much like a premade smoothie. Tasty? Yes. Transparent? Not always!
 
 Fortunately, we have posthoc methods to make sense of these complex models after they've been trained:
 
@@ -59,7 +59,7 @@ These methods act like nutritional labels or ingredient lists—turning your mys
 
 ### 4. Incorporation of biological knowledge
 <a id="chapter5"></a>
-Adding biological expertise is like sprinkling some expert seasoning that you know exactly what it does onto your dish—it elevates the entire analysis. By integrating prior biological knowledge during feature selection, we do not only narrow down the search space to "relevant features", but also enhance interpretability by associating our features with prior biological knowledge that might boost mechanistic explaination. Resources like databases for molecular attributes and phenotype associations (e.g., KEGG, Reactome, Gene Ontology) significantly empower our interpretations.
+Adding biological expertise is like sprinkling some expert seasoning that you know exactly what it does onto your dish, it elevates the entire analysis. By integrating prior biological knowledge during feature selection, we do not only narrow down the search space to "relevant features", but also enhance interpretability by associating our features with prior biological knowledge that might boost mechanistic explaination. Resources like databases for molecular attributes and phenotype associations (e.g., KEGG, Reactome, Gene Ontology) significantly empower our interpretations.
 
 However, be cautious here, biological knowledge is limited. The current available knowledge might not be sufficient to explain all the variance within our examined dataset. Always pair it with unbiased approaches to ensure comprehensive and balanced analyses. 
 

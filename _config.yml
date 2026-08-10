@@ -5,6 +5,9 @@ collections:
   data_viz:
     output: true
     permalink: /data_viz/:path/
+  personal:
+    output: true
+    permalink: /personal/:path/
 
 defaults:
   - scope:
