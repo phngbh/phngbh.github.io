@@ -29,7 +29,12 @@ I develop interpretable machine learning frameworks in Python and R that integra
 
 <table>
   <tr>
-    <td style="width: 20%; text-align: left; vertical-align: top;">Oct 2024 - present</td>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Sep 2026 - present</td>
+    <td style="width: 80%; text-align: left; vertical-align: top;"><strong>Senior Bioinformatics Engineer</strong><br><u>Profesisonal Service, DataXight</u><br>Developing scalable bioinformatics solutions for large-scale omics and clinical data. Working across workflow development, data harmonization, computational infrastructure, and reproducible analysis to transform complex biomedical datasets into production-ready analytical workflows.</td>
+  </tr>
+  <tr><td colspan="2" style="height: 15px;"></td></tr>
+  <tr>
+    <td style="width: 20%; text-align: left; vertical-align: top;">Oct 2024 - Dec 2025</td>
     <td style="width: 80%; text-align: left; vertical-align: top;"><strong>Postdoctoral researcher</strong><br><u>Computational Health Department - Helmholtz Munich</u><br>Leveraging machine learning and longitudinal healthcare datasets for translational precision medicine for diabetes and cardiovascular diseases</td>
   </tr>
   <tr><td colspan="2" style="height: 15px;"></td></tr>
