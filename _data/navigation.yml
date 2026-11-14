@@ -1,12 +1,15 @@
-- name: Home
-  link: /
-- name: About me
+- name: About
   link: /about.html
-- name: Projects/ tools development
+  match: /about
+- name: Projects
   link: /projects.html
-- name: Data visualization
+  match: /projects
+- name: Visualization
   link: /data_viz.html
-- name: Professional blog
+  match: /data_viz
+- name: Blog
   link: /blog.html
-- name: Personal blog
+  match: /blog
+- name: Personal
   link: /personal.html
+  match: /personal

@@ -22,6 +22,11 @@ defaults:
       layout: "project"
   - scope:
       path: ""
+      type: "personal"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
       type: "posts"
     values:
       layout: "post"

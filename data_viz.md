@@ -1,11 +1,11 @@
 ---
-layout: project
+layout: default
 title: Data visualization
 ---
 
 <h1>Data Visualization Gallery</h1>
 
-<p style="font-size: 17px;">
+<p>
   Excel-generated barplots are boring. In this page I will keep sharing the codes for eye-catching plots that I made during several projects, which I think are interesting and might be useful in specific situations, mostly in bioinformatics and computational biomedicine research.  
   Hope they give you ideas for your projects.
 </p>

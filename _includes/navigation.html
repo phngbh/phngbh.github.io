@@ -1,5 +1,8 @@
-<nav>
+<nav class="nav" aria-label="Main">
   {% for item in site.data.navigation %}
-    <a href="{{ item.link }}"{% if page.url == item.link %} class="current"{% endif %}>{{ item.name }}</a>
+    {% assign active = false %}
+    {% if page.url contains item.match %}{% assign active = true %}{% endif %}
+    {% if item.match == '/blog' and page.layout == 'post' %}{% assign active = true %}{% endif %}
+    <a href="{{ item.link }}"{% if active %} aria-current="page"{% endif %}>{{ item.name }}</a>
   {% endfor %}
 </nav>

@@ -20,7 +20,9 @@ sections:
 
 ## Introduction
 <a id="chapter1"></a>
-I am a bioinformatician/ data scientist with a background in Biology. I was formally trained as an experimental scientist, got my BSc. and MSc. degrees in Molecular Biology. My PhD research was in the area of Computational Biomedicine, at the intersection of Biology, Medicine, Mathematics and Computer Science. Particularly, I am interested in leveraging machine learning and statistical approaches to understand diseases and discover biomarkers that benefit patients and further advancing precision medicine. 
+I am a bioinformatician and data scientist. I trained as an experimental scientist, with BSc and MSc degrees in Molecular Biology, and did my PhD in Computational Biomedicine, at the intersection of biology, medicine, mathematics and computer science.
+
+I develop interpretable machine learning frameworks in Python and R that integrate multi-omic and clinical data for biomarker discovery, to advance mechanistic understanding and therapeutic development for cancer, diabetes and cardiovascular conditions. The goal is to turn data-driven discoveries into real-world healthcare impact. I am also interested in data visualization as a way to find new insights and present research clearly. See my [Projects](./projects.html) and [Data visualization](./data_viz.html) pages for examples.
 
 ## Work experience
 <a id="chapter2"></a>
